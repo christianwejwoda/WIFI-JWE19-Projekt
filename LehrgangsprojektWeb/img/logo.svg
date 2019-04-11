@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="162px" height="162px" viewBox="0 0 162 162" preserveAspectRatio="xMidYMid meet" ><rect id="svgEditorBackground" x="0" y="0" width="160" height="160" style="fill:none;stroke:none;"/>
+	<rect x="0" y="0" style="stroke: black; stroke-width: 1px;fill:white;" id="e1_rectangle" width="160" height="160" rx="10" ry="10"/>
+	<text style="fill:black;font-family:Impact;font-size:20px;" x="32" y="128" id="e2_texte">
+		<tspan x="32">Druckhaus</tspan>
+	</text>
+	<path d="M-8.390072985400188,-12.900418900248685l-4,6.927999999999999h8.000000000000004Z" style="fill:mediumseagreen; stroke:black; vector-effect:non-scaling-stroke;stroke-width:1px;" id="e3_shape" transform="matrix(12.2049 0 0 9.625 178.5 153.341)"/>
+</svg>

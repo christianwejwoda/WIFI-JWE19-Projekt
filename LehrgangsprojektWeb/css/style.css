@@ -1,0 +1,140 @@
+html,
+body {
+  margin: 0;
+  padding: 0;
+  /* background-image: url("../img/background_bg.jpg"); */
+  font-size: 0.8rem;// !important;
+}
+
+/* ****** */
+/* Header */
+/* ****** */
+.header {
+  margin-bottom: 4em;
+}
+.header a {
+  color: black;
+  text-decoration: none;
+}
+.bannerrow {
+  background-image: url("../img/pexels-photo-191429_1.jpeg");
+  background-size: cover;
+  width: 100%;
+  height: 15em;
+}
+h1 {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  font-size: 4vw;
+  /* font-size: 5em; */
+}
+
+.header_companyname {
+  display: flex;
+  height: 100%;
+}
+.header_companyname img {
+  width: 100px;
+  height: 100px;
+}
+.header_companyname a {
+  display: inline-block;
+  align-self: flex-end;
+  font-size: 3rem;
+}
+.header_companyname_text1 {
+    background-color: white;
+    border-radius: 10px;
+    padding: 0 10px;
+    opacity: 0.8;
+}
+.header_companyname_text2 {
+  font-weight: bold;
+  opacity: 1;
+}
+
+/* **** */
+/* Menu */
+/* **** */
+.menurow {
+  background-color: red;
+  height: 4em;
+  align-items: center;
+}
+.menurow ul {
+  margin: 0;
+  padding: 0;
+  display: flex;
+  list-style: none;
+  flex-direction: row;
+  float: left;
+  position: relative;
+  text-transform: uppercase;
+  align-items: center;
+}
+.menurow ul li {
+
+}
+.menurow ul li a {
+
+  height: auto;
+  display: block;
+  background-color: var(--grey-dark);
+  color: white;
+  text-decoration: none;
+  padding-right: 25px;
+  text-align: left;
+  transition: all 0.3s ease;
+  font-size: 1.5em;
+}
+.menurow ul li a:hover {
+  /* font-size: 2em; */
+  color: gray;
+}
+.menumarked a {
+  color: gray !important;
+  text-shadow: 1px 2px 0 black !important;
+}
+
+/* ************** */
+/* printshop form */
+/* ************** */
+.radio_format {
+  padding-left: 0 !important;
+  padding-bottom: 0 !important;
+  margin: 0;
+}
+/* ******* */
+/* general */
+/* ******* */
+.wrapper {
+  background-color: var(--light);
+  border-radius: 10px;
+  padding: 2em;
+}
+
+.center {
+  text-align: center;
+  padding: 20px;
+}
+
+.valide {
+  border-color: lightgreen !important;
+}
+
+.in-valide {
+  background-color: red;
+}
+
+.bar {
+  height: 18px;
+  background: green;
+}
+
+.error_message {
+  color: white !important;
+  background-color: lightcoral;
+  font-size: 0.5em;
+  border-radius: .25rem;
+}
