@@ -138,3 +138,29 @@ h1 {
   font-size: 0.5em;
   border-radius: .25rem;
 }
+
+/* Progressbar */
+.progressBar {
+	/* background: none repeat scroll 0 0 #E0E0E0; */
+	left: 0;
+	padding: 3px 0;
+	position: absolute;
+	top: 50%;
+	width: 100%;
+	display: none;
+}
+.progressBar .bar {
+	background-color: green;
+  border-radius: 10px;
+	width: 0%;
+	height: 20px;
+}
+.progressBar .percent {
+	display: inline-block;
+	left: 0;
+	position: absolute;
+	text-align: center;
+	top: 2px;
+	width: 100%;
+}
+/* https://benmarshall.me/styling-file-inputs/ */

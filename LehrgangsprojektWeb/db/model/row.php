@@ -1,18 +1,26 @@
 <?php
 abstract class db_model_row
 {
-  protected $_tabelle; // Muss in Kind-Klassen überschrieben werden
+  protected $_table; // Muss in Kind-Klassen überschrieben werden
+  protected $_unique_field;
   private $_daten;
 
   public function __construct($daten)
   {
-    // Prüfung ob vererbte Klassen die $this->_tabelle Eigenschaft überschrieben haben
-    if (empty($this->_tabelle)) {
-      throw new Exception("Eigenschaft _tabelle muss überschrieben werden, wenn von db_model_row geerbt wird.");
+    // Prüfung ob vererbte Klassen die $this->_table Eigenschaft überschrieben haben
+    if (empty($this->_table)) {
+      throw new Exception("Eigenschaft _table muss überschrieben werden, wenn von db_model_row geerbt wird.");
     }
 
     if (is_numeric($daten)) {
-      $result = db_mysql::get_instanz()->query("SELECT * FROM {$this->_tabelle} WHERE id = ?;", array($daten));
+      $result = db_mysql::get_instanz()->query("SELECT * FROM {$this->_table} WHERE id = ?;", array($daten));
+      $daten = $result->fetch_assoc();
+    }
+
+    if (is_string($daten)) {
+      $parts = explode(",",$daten);
+      $where = array_shift($parts);
+      $result = db_mysql::get_instanz()->query("SELECT * FROM {$this->_table} WHERE {$where};", $parts);
       $daten = $result->fetch_assoc();
     }
     $this->_daten = $daten;
@@ -23,12 +31,26 @@ abstract class db_model_row
     return $this->_daten[$variable];
   }
 
-  public function entfernen()
+  public function check_double_entry($unique_field)
   {
-    db_mysql::get_instanz()->query("DELETE FROM {$this->_tabelle} WHERE id = ?;", array($this->_daten["id"]));
+    $result = db_mysql::get_instanz()->query("SELECT COUNT(1) FROM {$this->_table} WHERE {$this->_unique_field} = ? ", array($unique_field));
+    $row = $result->fetch_row();
+    return (int)$row[0] > 0;
   }
 
-  public function speichern()
+  public function entfernen()
+  {
+    db_mysql::get_instanz()->query("DELETE FROM {$this->_table} WHERE id = ?;", array($this->_daten["id"]));
+  }
+
+  public function __set($fieldname, $value)
+  {
+    if (array_key_exists($fieldname,$this->_daten)) {
+      $this->_daten[$fieldname] = $value;
+    }
+  }
+
+  public function save()
   {
     $db = db_mysql::get_instanz();
 
@@ -43,10 +65,10 @@ abstract class db_model_row
     $fields = trim($fields,", ");
 
     if (empty($this->_daten["id"])) {
-      $db->query("INSERT INTO {$this->_tabelle} SET {$fields} ;", $values);
+      $db->query("INSERT INTO {$this->_table} SET {$fields} ;", $values);
     } else {
       $values[] = $this->_daten["id"];
-      $db->query("UPDATE {$this->_tabelle} SET {$fields} WHERE id = ? ;", $values);
+      $db->query("UPDATE {$this->_table} SET {$fields} WHERE id = ? ;", $values);
     }
   }
 
