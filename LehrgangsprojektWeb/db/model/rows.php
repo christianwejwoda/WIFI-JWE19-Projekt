@@ -2,7 +2,7 @@
 abstract class db_model_rows
 {
   protected $_table = "";
-  private $_datasave = array();
+  protected $_datasave = array();
 
   public function __construct()
   {
@@ -16,25 +16,21 @@ abstract class db_model_rows
   {
     $platzhalter = array();
     $sql = "SELECT COUNT(1) FROM {$this->_table} " ;
-
     $result = db_mysql::get_instanz()->query($sql, $platzhalter);
     $row = $result->fetch_row();
     return $row[0];
 
   }
 
-  public function get()
+  public function getRows()
   {
-    if (empty($this->_datasave)) {
-      $platzhalter = array();
-      $sql = "SELECT * FROM {$this->_table} " ;
-
-      $result = db_mysql::get_instanz()->query($sql, $platzhalter);
-      while ($row = $result->fetch_assoc()) {
-        $this->_datasave[] = new db_produkt($row);
-      }
+    $platzhalter = array();
+    $sql = "SELECT * FROM {$this->_table} " ;
+    $result = db_mysql::get_instanz()->query($sql, $platzhalter);
+    foreach ($result as $row) {
+      $rows[] = $row;
     }
-    return $this->_datasave;
+    return $rows;
   }
 
 }

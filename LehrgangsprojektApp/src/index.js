@@ -6,11 +6,11 @@ import 'typeface-roboto';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import { HashRouter as Router } from "react-router-dom";
 import { MuiThemeProvider, createMuiTheme } from '@material-ui/core/styles';
-import pink from '@material-ui/core/colors/pink';
+import orange from '@material-ui/core/colors/orange';
 
 const theme = createMuiTheme({
   palette: {
-    primary: pink,
+    primary: orange,
     background: {
       default: "#e0e0e0"
     }

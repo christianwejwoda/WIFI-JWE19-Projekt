@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Erstellungszeit: 24. Apr 2019 um 22:42
+-- Erstellungszeit: 08. Mai 2019 um 21:13
 -- Server-Version: 10.1.38-MariaDB
 -- PHP-Version: 7.3.2
 
@@ -57,14 +57,13 @@ CREATE TABLE `auftraege` (
 --
 
 INSERT INTO `auftraege` (`id`, `session_id`, `produkt_id`, `ein_zwei_seitig`, `grammatur_id`, `randlos`, `seitenzahl`, `einheiten`, `zustelloption_id`, `lieferdatum`, `akzeptiert`, `nachname`, `vorname`, `strasse`, `plz`, `ort`, `email`, `farbe`, `deckblatt_text`, `deckblatt_datei`, `inhalt_datei`) VALUES
-(1, 'hkabtqjh2foifihk4tm1vvnsuc', 2, 1, 2, 0, 10, 1, 1, '2019-04-05', 0, 'Wejwoda', 'Christian', 'Marx-Reichlich-Straße 3/2', '5020', 'Salzburg', 'christian@wejwoda.at', '#000000', 'sdf asdgf g asd', 0, 0),
-(2, 'hkabtqjh2foifihk4tm1vvnsuc', 2, 1, 2, 0, 10, 1, 1, '2019-04-05', 0, 'Wejwoda', 'Christian', 'Marx-Reichlich-Straße 3/2', '5020', 'Salzburg', 'christian@wejwoda.at', '#000000', 'sdf asdgf g asd', 1, 8),
-(3, 'hkabtqjh2foifihk4tm1vvnsuc', 2, 1, 2, 0, 10, 1, 1, '2019-04-05', 0, 'Wejwoda', 'Christian', 'Marx-Reichlich-Straße 3/2', '5020', 'Salzburg', 'christian@wejwoda.at', '#000000', 'sdf asdgf g asd', 1, 8),
-(4, 'hkabtqjh2foifihk4tm1vvnsuc', 3, 2, 3, 0, 10, 1, 1, '2019-04-18', 0, 'Wejwoda', 'Christian', 'Marx-Reichlich-Straße 3/2', '5020', 'Salzburg', 'christian@wejwoda.at', '#000000', '', 9, 8),
-(5, 'hkabtqjh2foifihk4tm1vvnsuc', 3, 2, 3, 0, 10, 1, 1, '2019-04-19', 0, 'Wejwoda', 'Christian', 'Marx-Reichlich-Straße 3/2', '5020', 'Salzburg', 'christian@wejwoda.at', '#000000', '', 5, 9),
-(6, '8etmf576476kjgrg0vdui08b5c', 2, 1, 2, 0, 10, 1, 1, '2019-04-11', 0, 'Wejwoda', 'Christian', 'Marx-Reichlich-Straße 3/2', '5020', 'Salzburg', 'christian@wejwoda.at', '#000000', 'sdf asdgf g asd', 26, 27),
-(7, '49rqi02qitrvnub3o56ntcjeb8', 2, 1, 2, 0, 10, 6, 1, '2019-04-11', 0, 'Wejwoda', 'Christian', 'Marx-Reichlich-Straße 3/2', '5020', 'Salzburg', 'christian@wejwoda.at', '#000000', 'sdf asdgf g asd', 28, 29),
-(8, 'f90m167lra7mjfvd7e6u8a8gm4', 4, 2, 4, 0, 15, 6, 2, '2019-05-02', 0, 'Wejwoda', 'Christian', 'Marx-Reichlich-Straße 3/2', '5020', 'Salzburg', 'christian@wejwoda.at', '#000000', '', 30, 31);
+(1, '2cspsd0bjt0c6nujt71tqddtbs', 2, 1, 3, 0, 10, 1, 1, '2019-05-17', NULL, 'Wejwoda', 'Christian', 'Marx-Reichlich-Straße 3/2', '5020', 'Salzburg', 'christian@wejwoda.at', '#e2d74d', 'dddddd', 1, 2),
+(2, '8b1m621qfh2la9c0qr6mjfik2v', 3, 1, 2, 0, 10, 1, 1, '2019-05-10', NULL, 'Wejwoda', 'Christian', 'Marx-Reichlich-Straße 3/2', '5020', 'Salzburg', 'christian@wejwoda.at', '#9c928a', 'jfjfjjf', 3, 4),
+(7, 'n8lk3q7j3jumtmngje0c19m55o', 2, 1, 2, 0, 10, 1, 1, '2019-05-10', 0, 'Wejwoda', 'Christian', 'Marx-Reichlich-Straße 3/2', '5020', 'Salzburg', 'christian@wejwoda.at', '#443d38', 'ffff', 7, 8),
+(8, '3o03fbiihn3h5mhehpu16rk1f0', 2, 1, 2, 0, 10, 1, 1, '2019-05-09', 1, 'Wejwoda', 'Christian', 'Marx-Reichlich-Straße 3/2', '5020', 'Salzburg', 'christian@wejwoda.at', '#faed59', 'dddd', 9, 10),
+(9, '3o03fbiihn3h5mhehpu16rk1f0', 2, 1, 2, 0, 10, 1, 1, '2019-05-09', 1, 'Wejwoda', 'Christian', 'Marx-Reichlich-Straße 3/2', '5020', 'Salzburg', 'christian@wejwoda.at', '#faed59', 'dddd', 9, 10),
+(10, '3o03fbiihn3h5mhehpu16rk1f0', 2, 1, 2, 0, 10, 1, 1, '2019-05-09', 1, 'Wejwoda', 'Christian', 'Marx-Reichlich-Straße 3/2', '5020', 'Salzburg', 'christian@wejwoda.at', '#faed59', 'dddd', 9, 10),
+(11, 'h87bnggqnivf690ti8hq1hvbgi', 2, 2, 2, 0, 100, 13, 1, '2019-05-31', 1, 'Wejwoda', 'Fritz', 'Hierunddortgasse 5', '4820', 'Bad Ischl', 'Christian@wej.at', '#db9065', 'Hhhjhjjjjj', NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -87,7 +86,7 @@ CREATE TABLE `benutzer` (
 --
 
 INSERT INTO `benutzer` (`id`, `anzeigename`, `benutzername`, `email`, `passwort`, `letzter_login`, `anzahl_logins`) VALUES
-(1, 'Wejwoda Christian', 'wechri', 'christian@wejwoda.at', '$2y$10$.vnSlrxiRPNHu.g7nap6i.MbgCJ76029LB7pFvT8pkhsJ0iFckjHm', '2019-04-17 20:15:18', 16);
+(1, 'Wejwoda Christian', 'wechri', 'christian@wejwoda.at', '$2y$10$.vnSlrxiRPNHu.g7nap6i.MbgCJ76029LB7pFvT8pkhsJ0iFckjHm', '2019-04-27 14:35:25', 17);
 
 -- --------------------------------------------------------
 
@@ -157,37 +156,18 @@ CREATE TABLE `uploaddateien` (
 --
 
 INSERT INTO `uploaddateien` (`id`, `session_id`, `upload_dateiname`, `org_dateiname`) VALUES
-(1, 'hkabtqjh2foifihk4tm1vvnsuc', 'addb647fd00930a5866e8f64fe2a7bb0.pdf', 'Scan0006.pdf'),
-(2, 'hkabtqjh2foifihk4tm1vvnsuc', 'e855a29938218d63cd9717b7fa33e07d.pdf', '20180911_Überweisungbestätigung.pdf'),
-(3, 'hkabtqjh2foifihk4tm1vvnsuc', '4a8c0cd215114d422eb7f042f54ca196.pdf', '90-18_Zahlungsbestätigung.pdf'),
-(4, 'hkabtqjh2foifihk4tm1vvnsuc', '6ecee22f0cc5cf0d64119e766c2a3c26.pdf', 'Scan0008.pdf'),
-(5, 'hkabtqjh2foifihk4tm1vvnsuc', 'f40cbbc9da03de0fcaa7ffe716e9099b.pdf', 'Scan0003.pdf'),
-(6, 'hkabtqjh2foifihk4tm1vvnsuc', '8bed3751e7713ff58ea02018d9b5a52f.pdf', 'Scan0006.pdf'),
-(7, 'hkabtqjh2foifihk4tm1vvnsuc', 'f28766b390a5bcba93a112432d4c6436.pdf', 'Scan0003.pdf'),
-(8, 'hkabtqjh2foifihk4tm1vvnsuc', '449d153ddeb16fb855089b558aa54098.pdf', 'Scan0005.pdf'),
-(9, 'hkabtqjh2foifihk4tm1vvnsuc', 'cb3a83fd226341c658f990d3e427cffa.pdf', 'Scan0004.pdf'),
-(10, 'hkabtqjh2foifihk4tm1vvnsuc', '08f1a71774e723f6751659ff64093a0c.pdf', 'Scan0006.pdf'),
-(11, 'hkabtqjh2foifihk4tm1vvnsuc', 'bb3f8beab600478585c9ec916bf2cad4.pdf', 'Scan0003.pdf'),
-(12, 'hkabtqjh2foifihk4tm1vvnsuc', 'fe7e4bfa4f2c4b56072c5a304bbd464a.pdf', 'Scan0004.pdf'),
-(13, 'hkabtqjh2foifihk4tm1vvnsuc', 'e3ca734d6d3f4b48e6af211914fe6663.pdf', 'Scan0003.pdf'),
-(14, 'hkabtqjh2foifihk4tm1vvnsuc', '2ae32c2d65394a132cbad1b84763dc07.pdf', 'Scan0004.pdf'),
-(15, 'hkabtqjh2foifihk4tm1vvnsuc', 'f68240fd54737033cb491d1d50ddf327.pdf', 'Scan0006.pdf'),
-(16, 'hkabtqjh2foifihk4tm1vvnsuc', 'a3d9cf4fe3fa3b14b7da603b0d9159b9.pdf', 'Scan0006.pdf'),
-(17, 'hkabtqjh2foifihk4tm1vvnsuc', '2e737093ee8cf7c8e38ee1fec55df44e.pdf', 'Scan0003.pdf'),
-(18, 'hkabtqjh2foifihk4tm1vvnsuc', '0649e30bcfa1849fa2dd8a7ceb9821cd.pdf', 'Scan0006.pdf'),
-(19, 'hkabtqjh2foifihk4tm1vvnsuc', '1820390986a62d186da39d6b30a5da18.pdf', 'Scan0005.pdf'),
-(20, 'hkabtqjh2foifihk4tm1vvnsuc', 'bf0b45c6c563f72ddb0f10fb0a079ba5.pdf', 'Scan0006.pdf'),
-(21, 'hkabtqjh2foifihk4tm1vvnsuc', '27ef1937b89f8b2c61c7f0d3fac5423e.pdf', 'Scan0005.pdf'),
-(22, 'hkabtqjh2foifihk4tm1vvnsuc', '5f51230f88d35b390080d4c5df89dd2a.pdf', 'Scan0004.pdf'),
-(23, 'hkabtqjh2foifihk4tm1vvnsuc', '58ab51328c015c591d826616fd828767.pdf', 'Scan0005.pdf'),
-(24, 'hkabtqjh2foifihk4tm1vvnsuc', '46a5e8d0f144a0d0fe3fd6e9d1abb237.pdf', 'Scan0003.pdf'),
-(25, 'hkabtqjh2foifihk4tm1vvnsuc', '0be0b95a9d8e5d80b25fd5c3b6c8226c.pdf', 'Scan0004.pdf'),
-(26, '8etmf576476kjgrg0vdui08b5c', '433d57648ab602834676b3a03ef3b9f6.pdf', 'Scan0011.pdf'),
-(27, '8etmf576476kjgrg0vdui08b5c', 'f412b15e207f90af4f81037e7e36b4cd.pdf', 'Scan0010.pdf'),
-(28, '49rqi02qitrvnub3o56ntcjeb8', '2a5d44fca9880fbbb5dde7ff4950ecc3.pdf', 'Scan0009.pdf'),
-(29, '49rqi02qitrvnub3o56ntcjeb8', 'f95c40b40055c1b2975062e6a95d3086.pdf', 'Scan0008.pdf'),
-(30, 'f90m167lra7mjfvd7e6u8a8gm4', 'c6bc4e41879cb279469105cee356c5b8.pdf', 'Scan0006.pdf'),
-(31, 'f90m167lra7mjfvd7e6u8a8gm4', '2314cb45b2bafb075629b6d55976c3a4.pdf', 'Scan0005.pdf');
+(1, '2cspsd0bjt0c6nujt71tqddtbs', '7a48de329bc9ea114a6f7d5eae1b0681.pdf', 'Scan0011.pdf'),
+(2, '2cspsd0bjt0c6nujt71tqddtbs', 'db1de7bed4e76e6004a3a1446dbab5bd.pdf', '90-18_a.pdf'),
+(3, '8b1m621qfh2la9c0qr6mjfik2v', '751700f128e599a542db74194da450b7.pdf', 'Scan0008.pdf'),
+(4, '8b1m621qfh2la9c0qr6mjfik2v', 'd6530954f5488013aeecceb4f91d775b.pdf', '89-18_a.pdf'),
+(5, 'dned7gbtk9rii048gvmf5rrimf', '8564adb0497a06e151639da4549d8960.pdf', 'Scan0009.pdf'),
+(6, 'dned7gbtk9rii048gvmf5rrimf', 'ff667c406cddd8115cb7b3f1bcf2c770.pdf', 'Scan0008.pdf'),
+(7, 'n8lk3q7j3jumtmngje0c19m55o', 'c42eaf4a5a13956a0805256f67af2a49.pdf', 'Scan0009.pdf'),
+(8, 'n8lk3q7j3jumtmngje0c19m55o', '02e3307c92275b6603d9760f69ce826c.pdf', 'Scan0008.pdf'),
+(9, '3o03fbiihn3h5mhehpu16rk1f0', '156279c09292b5684ed8acf40bc7fe25.pdf', 'Scan0010.pdf'),
+(10, '3o03fbiihn3h5mhehpu16rk1f0', '0ec8d02fe5daa6f325b279cf4049c9c7.pdf', 'Scan0009.pdf'),
+(11, '67npaes4j28m2j9rj78c5kajm6', '3deabc626b4ad7ce29f671858b57a5c9.pdf', 'Scan0009.pdf'),
+(12, '67npaes4j28m2j9rj78c5kajm6', '4d904d09474b8ebbd43aedb136f83cc7.pdf', '89-18_Zahlungsbestätigung.pdf');
 
 -- --------------------------------------------------------
 
@@ -262,7 +242,7 @@ ALTER TABLE `zustelloptionen`
 -- AUTO_INCREMENT für Tabelle `auftraege`
 --
 ALTER TABLE `auftraege`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 
 --
 -- AUTO_INCREMENT für Tabelle `benutzer`
@@ -274,19 +254,19 @@ ALTER TABLE `benutzer`
 -- AUTO_INCREMENT für Tabelle `gramaturen`
 --
 ALTER TABLE `gramaturen`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- AUTO_INCREMENT für Tabelle `produkte`
 --
 ALTER TABLE `produkte`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT für Tabelle `uploaddateien`
 --
 ALTER TABLE `uploaddateien`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=32;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 
 --
 -- AUTO_INCREMENT für Tabelle `zustelloptionen`

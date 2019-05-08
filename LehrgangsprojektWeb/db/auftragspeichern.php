@@ -12,10 +12,14 @@ class db_auftragspeichern
   public function validieren()
   {
     try {
-      $file = new db_uploaddatei("session_id = ? AND org_dateiname = ?,{$this->_values['session_id']},{$this->_values['deckblatt_datei']}");
+      $x1 = explode("\\", $this->_values['deckblatt_datei']);
+      $f1 = end($x1);
+      $file = new db_uploaddatei("session_id = ? AND org_dateiname = ?,{$this->_values['session_id']},{$f1}");
       $this->_values['deckblatt_datei'] = $file->id;
 
-      $file = new db_uploaddatei("session_id = ? AND org_dateiname = ?,{$this->_values['session_id']},{$this->_values['inhalt_datei']}");
+      $x1 = explode("\\", $this->_values['inhalt_datei']);
+      $f1 = end($x1);
+      $file = new db_uploaddatei("session_id = ? AND org_dateiname = ?,{$this->_values['session_id']},{$f1}");
       $this->_values['inhalt_datei'] = $file->id;
 
     } catch (Exception $e) {

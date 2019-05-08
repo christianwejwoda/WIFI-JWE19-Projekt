@@ -5,13 +5,17 @@
   "dependencies": {
     "@material-ui/core": "^3.9.2",
     "@material-ui/icons": "^3.0.2",
-    "jquery": "^3.3.1",
+    "jquery": "^3.4.0",
+    "material-ui-color-picker": "^3.2.0",
+    "material-ui-icons": "^1.0.0-beta.36",
     "react": "^16.8.5",
+    "react-color": "^2.17.3",
     "react-dom": "^16.8.5",
     "react-router-dom": "^5.0.0",
     "react-scripts": "2.1.8",
     "react-swipeable-views": "^0.13.1",
-    "typeface-roboto": "0.0.54"
+    "typeface-roboto": "0.0.54",
+    "typescript": "^3.4.5"
   },
   "scripts": {
     "start": "react-scripts start",

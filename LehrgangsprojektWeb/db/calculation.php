@@ -53,11 +53,13 @@ class db_calculation
     // randlos ==> druckpreis + 5%
     if ($this->_values["randlos"] === "true") {
       $preis = $preis * 1.05;
+      $this->_answers["preis2add"] = $preis - $this->_answers["preis1"];
       $this->_answers["preis2"] = $preis;
     }
 
     //produkt : $produkt_id->preis
     $preis += $this->_produkt->preis;
+    $this->_answers["preis3add"] = $this->_produkt->preis;
     $this->_answers["preis3"] = $preis;
 
     // mit der Anzahl Einheiten multiplizieren
@@ -68,6 +70,7 @@ class db_calculation
       $preis += $zt->preis;
       $this->_answers["price_delivery_label"] = $zt->titel;
       $this->_answers["preis5"] = $preis;
+      $this->_answers["preis5add"] = $zt->preis;
     }
     $this->_answers["einheiten"] = (int)$this->_values["einheiten"];
 

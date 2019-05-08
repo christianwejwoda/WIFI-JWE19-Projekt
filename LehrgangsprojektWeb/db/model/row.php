@@ -3,7 +3,7 @@ abstract class db_model_row
 {
   protected $_table; // Muss in Kind-Klassen überschrieben werden
   protected $_unique_field;
-  private $_daten;
+  protected $_daten;
 
   public function __construct($daten)
   {
@@ -29,6 +29,11 @@ abstract class db_model_row
   public function __get($variable)
   {
     return $this->_daten[$variable];
+  }
+
+  public function getRow()
+  {
+    return $this->_daten;
   }
 
   public function check_double_entry($unique_field)

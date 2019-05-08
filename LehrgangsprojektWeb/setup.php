@@ -17,18 +17,4 @@ $menu_items = array(
   // $produkte = mysqli_query($db, "SELECT * FROM produkte WHERE inaktiv = 0 ORDER BY titel;") or die(mysqli_error($db));
   // $gramaturen = mysqli_query($db, "SELECT * FROM gramaturen WHERE inaktiv = 0 ORDER BY gramm_m2;") or die(mysqli_error($db));
 
-// Setup-Code: Ab hier nichts mehr ändern!
-session_start();
-
-spl_autoload_register(function($klasse)
-{
-  $pfad = str_replace('_','/',$klasse) . ".php";
-  require_once $pfad;
-});
-
-function is_logged_in()
-{
-  if (empty($_SESSION["benutzer_id"])) {
-    header("Location: login.php");
-  }
-}
+require_once "functions.php";

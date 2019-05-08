@@ -106,9 +106,11 @@ require_once "setup.php";
             <?php
             $zustelloptionen = new db_zustelloptionen();
             foreach ($zustelloptionen->get() as $zustelloption) {
-                echo '<label class="col-2 radio_format col-form-label" for="pg' . $zustelloption->id . '">';
+                echo "<span class='col-3'>";
+                echo '<label class="radio_format col-form-label" for="pg' . $zustelloption->id . '">';
                 echo '<input id="pg' . $zustelloption->id . '" type="radio" name="zustelloption_id" value="' . $zustelloption->id . '" ';
                 echo '/> ' . $zustelloption->titel . '</label>';
+                echo"</span>";
               }
              ?>
              </div>
@@ -132,27 +134,37 @@ require_once "setup.php";
             <p class='h3'>Angebot</p>
             <div class='form-group row'>
               <span class='col-3 col-form-label'>Preis pro Seite:</span>
-              <span class='col-2 form-control text-right' id="price_per_page"></span>
+              <span class='col-1'></span>
+              <span class='col-1'></span>
+              <span class='col-1 form-control text-right' id="price_per_page"></span>
             </div>
             <div class='form-group row' id="price_add_randlos_group">
               <span class='col-3 col-form-label'>+ Aufschlag für randlosen Druck:</span>
-              <span class='col-2 form-control text-right' id="price_add_randlos"></span>
+              <span class='col-1 form-control text-right' id="price_add_randlos_add"></span>
+              <span class='col-1 col-form-label'>==></span>
+              <span class='col-1 form-control text-right' id="price_add_randlos"></span>
             </div>
             <div class='form-group row'>
               <span class='col-3 col-form-label'>+ Basispreis für Cover:</span>
-              <span class='col-2 form-control text-right' id="price_add_cover"></span>
+              <span class='col-1 form-control text-right' id="price_add_cover_add"></span>
+              <span class='col-1 col-form-label'>==></span>
+              <span class='col-1 form-control text-right' id="price_add_cover"></span>
             </div>
             <div class='form-group row'>
               <span class='col-3 col-form-label' id="price_result_label"></span>
-              <span class='col-2 form-control text-right' id="price_result"></span>
+              <span class='col-1'></span>
+              <span class='col-1'></span>
+              <span class='col-1 form-control text-right' id="price_result"></span>
             </div>
             <div class='form-group row' id="price_delivery_group">
               <span class='col-3 col-form-label' id="price_delivery_label"></span>
-              <span class='col-2 form-control text-right' id="price_delivery"></span>
+              <span class='col-1 form-control text-right' id="price_delivery_add"></span>
+              <span class='col-1 col-form-label'>==></span>
+              <span class='col-1 form-control text-right' id="price_delivery"></span>
             </div>
             <div class='form-group row'>
               <span class='col-3 col-form-label'>voraussichtliche Produktionszeit</span>
-              <span class='col-2 form-control text-right' id="produktionszeit"></span>
+              <span class='col-1 form-control text-right' id="produktionszeit"></span>
             </div>
 
             <!-- alles akzeptiert -->
@@ -221,7 +233,7 @@ require_once "setup.php";
 
               <!-- Deckblatt Upload -->
               <div class="form-group row">
-                <label class="col-3 col-form-label" for="deckblatt_datei">Deckblatt:</label>
+                <label class="col-3 col-form-label" for="deckblatt_datei">Deckblatt-Datei (PDF):</label>
                 <input class="col-2" type="file" accept=".pdf" name="deckblatt_datei[]" id="deckblatt_datei">
                 <div class="progressBar col-7" id="progressBar_deckblatt_datei">
                   <div class="bar" id="bar_deckblatt_datei"></div>
@@ -233,7 +245,7 @@ require_once "setup.php";
 
               <!-- Content Upload -->
               <div class="form-group row">
-                <label class="col-3 col-form-label" for="inhalt_datei">Inhalt:</label>
+                <label class="col-3 col-form-label" for="inhalt_datei">Inhalt-Datei (PDF):</label>
                 <input class="col-2" type="file" accept=".pdf" name="inhalt_datei[]" id="inhalt_datei">
                 <div class="progressBar col-7" id="progressBar_inhalt_datei">
                   <div class="bar" id="bar_inhalt_datei"></div>

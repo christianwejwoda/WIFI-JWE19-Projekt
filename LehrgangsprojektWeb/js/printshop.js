@@ -14,7 +14,6 @@ $('#abschluss').hide();
 // - liefertermin
 
 var json_produkt_id = "";
-var json_deckblatt_option = "";
 var json_ein_zwei_seitig = "";
 var json_seitenzahl = "";
 var json_grammatur_id = "";
@@ -98,7 +97,6 @@ function check_all()
 
        var sendInfo = {
                produkt_id: json_produkt_id,
-               deckblatt_option: json_deckblatt_option,
                ein_zwei_seitig: json_ein_zwei_seitig,
                seitenzahl: json_seitenzahl,
                grammatur_id: json_grammatur_id,
@@ -110,13 +108,14 @@ function check_all()
 
            $.ajax({
                type: "POST",
-               url: "calculation.php",
+               url: "lib/calculation.php",
                dataType: "json",
                data: sendInfo,
                context: this,
                success: function (msg) {
                    if (msg)
                    {
+                     msg = msg["data"];
                      // preis1 --> Seitenpreis
                      // preis2 --> Aufpreis "randlos"
                      // preis3 --> Preis pro Einheit
@@ -124,23 +123,30 @@ function check_all()
                      // einheiten --> Anzahl Einheiten
                      var p1 = parseFloat(msg["preis1"]);
                      var p2 = parseFloat(msg["preis2"]);
+                     var p2add = parseFloat(msg["preis2add"]);
                      var p3 = parseFloat(msg["preis3"]);
+                     var p3add = parseFloat(msg["preis3add"]);
                      var p4 = parseFloat(msg["preis4"]);
                      var p5 = parseFloat(msg["preis5"]);
+                     var p5add = parseFloat(msg["preis5add"]);
 
                      $('#price_per_page').html(p1.toFixed(2) + " &euro;");
                      if (isNaN(p2)) {
                        $('#price_add_randlos_group').hide();
                      } else {
                        $('#price_add_randlos_group').show();
+                       $('#price_add_randlos_add').html(p2add.toFixed(2) + " &euro;");
                        $('#price_add_randlos').html(p2.toFixed(2) + " &euro;");
                      }
+                     $('#price_add_cover_add').html(p3add.toFixed(2) + " &euro;");
                      $('#price_add_cover').html(p3.toFixed(2) + " &euro;");
+
                      $('#price_result').html(p4.toFixed(2) + " &euro;");
                      $('#price_result_label').html("Gesamtpreis für " + msg["einheiten"] + " Einheiten:");
 
                      if (p5 > 0) {
                        $('#price_delivery_label').html("+ " + msg["price_delivery_label"]);
+                       $('#price_delivery_add').html(p5add.toFixed(2) + " &euro;");
                        $('#price_delivery').html(p5.toFixed(2) + " &euro;");
                        $('#price_delivery_group').show();
                      }
@@ -361,12 +367,8 @@ $('#akzeptiert').change(function() {
 function check_part2_sub()
 {
   var ok = true;
-  if (json_deckblatt_option == 1) {
-    ok &= check_favcolor();
-    ok &= check_deckblatt_text();
-  } else {
-
-  }
+  ok &= check_favcolor();
+  ok &= check_deckblatt_text();
   ok &= check_nachname();
   ok &= check_vorname();
   ok &= check_strasse();

@@ -5,10 +5,16 @@ import SwipeableViews from 'react-swipeable-views';
 import AppBar from '@material-ui/core/AppBar';
 import Tabs from '@material-ui/core/Tabs';
 import Tab from '@material-ui/core/Tab';
+import Toolbar from '@material-ui/core/Toolbar';
 import Typography from '@material-ui/core/Typography';
+import Button from '@material-ui/core/Button';
+import IconButton from '@material-ui/core/IconButton';
+import MenuIcon from '@material-ui/icons/Menu';
+import Paper from '@material-ui/core/Paper';
+import Grid from '@material-ui/core/Grid';
 
-import DirectInput from "./DirectInput";
-import FileInput from "./FileInput";
+import ProductSelect from "./ProductSelect";
+import Administration from "./Administration";
 
 function TabContainer({ children, dir }) {
   return (
@@ -26,8 +32,21 @@ TabContainer.propTypes = {
 const styles = theme => ({
   root: {
     backgroundColor: theme.palette.background.paper,
+    flexGrow: 1,
   },
-});
+  grow: {
+    flexGrow: 1,
+  },
+  menuButton: {
+    marginLeft: -12,
+    marginRight: 20,
+  },
+  paper: {
+      padding: theme.spacing.unit,
+      textAlign: 'left',
+      color: theme.palette.text.secondary,
+    },
+  });
 
 class FullWidthTabs extends React.Component {
   state = {
@@ -48,25 +67,37 @@ class FullWidthTabs extends React.Component {
     return (
       <div className={classes.root}>
         <AppBar position="static" color="default">
-          <Tabs
+          {/* <Tabs
             value={this.state.value}
             onChange={this.handleChange}
             indicatorColor="primary"
             textColor="primary"
             variant="fullWidth"
           >
-            <Tab label="direct Input" />
-            <Tab label="file Input" />
-          </Tabs>
+            <Tab label="Produkt zusammenstellen" />
+            <Tab label="Administration" />
+          </Tabs> */}
+          <Toolbar>
+          <IconButton className={classes.menuButton} color="inherit" aria-label="Menu">
+            <MenuIcon />
+          </IconButton>
+          <Typography variant="h6" color="inherit" className={classes.grow}>
+            Produkt zusammenstellen
+          </Typography>
+          <Button color="inherit">Login</Button>
+        </Toolbar>
         </AppBar>
-        <SwipeableViews
+        {/* <SwipeableViews
           axis={theme.direction === 'rtl' ? 'x-reverse' : 'x'}
           index={this.state.value}
           onChangeIndex={this.handleChangeIndex}
         >
-          <TabContainer dir={theme.direction}><DirectInput /></TabContainer>
-          <TabContainer dir={theme.direction}><FileInput/></TabContainer>
-        </SwipeableViews>
+          <TabContainer dir={theme.direction}><ProductSelect /></TabContainer>
+          <TabContainer dir={theme.direction}><Administration/></TabContainer>
+        </SwipeableViews> */}
+        <Paper className={classes.paper}>
+          <ProductSelect />
+        </Paper>
       </div>
     );
   }
