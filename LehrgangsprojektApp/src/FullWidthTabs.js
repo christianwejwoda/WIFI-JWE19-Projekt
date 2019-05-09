@@ -1,20 +1,20 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
-import SwipeableViews from 'react-swipeable-views';
+// import SwipeableViews from 'react-swipeable-views';
 import AppBar from '@material-ui/core/AppBar';
-import Tabs from '@material-ui/core/Tabs';
-import Tab from '@material-ui/core/Tab';
+// import Tabs from '@material-ui/core/Tabs';
+// import Tab from '@material-ui/core/Tab';
 import Toolbar from '@material-ui/core/Toolbar';
 import Typography from '@material-ui/core/Typography';
 import Button from '@material-ui/core/Button';
 import IconButton from '@material-ui/core/IconButton';
 import MenuIcon from '@material-ui/icons/Menu';
 import Paper from '@material-ui/core/Paper';
-import Grid from '@material-ui/core/Grid';
+// import Grid from '@material-ui/core/Grid';
 
 import ProductSelect from "./ProductSelect";
-import Administration from "./Administration";
+// import Administration from "./Administration";
 
 function TabContainer({ children, dir }) {
   return (

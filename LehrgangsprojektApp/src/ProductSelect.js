@@ -73,6 +73,7 @@ class ProductSelect extends Component {
       paperweights: [], selectedPaperweight: "",
       borderless: 0,
       pagecount: 10,
+      minseiten: 10,
       maxseiten: 1000,
       units: 1,
       deliveryoptions: [], selectedDeliveryoption: "",
@@ -106,13 +107,22 @@ class ProductSelect extends Component {
       showPageoptionError: false,
       showPaperweightsError: false,
       showPagecountError: false,
-      pagecountErrortext: ""
+      pagecountErrortext: "",
+      showUnitsError: false,
+      showDeliveryoptionError: false,
+      showDeliverydateError: false
     }
     this.addProducts();
     this.addPaperweights();
     this.addDeliveryoptions();
+
+    this.baseState = this.state ;
+    this.handleChange = this.handleChange.bind(this);
   }
 
+  resetForm = () => {
+      this.setState(this.baseState)
+    }
   addProducts = () => {
     $.ajax({
       type: "POST",
@@ -200,31 +210,51 @@ class ProductSelect extends Component {
     this.setState({showProductError: !this.state.selectedProductID});
     this.setState({showPageoptionError: this.state.seitenoption === ""});
     this.setState({showPaperweightsError: this.state.selectedPaperweight === ""});
+    if (this.state.pagecount < parseInt(this.state.minseiten) || this.state.pagecount > parseInt(this.state.maxseiten)) {
+      this.setState({showPagecountError: true});
+      this.setState({pagecountErrortext: "Die Seitenzahl darf den Bereich von " + this.state.minseiten + " bis " + this.state.maxseiten + " nicht verlassen."});
+    } else {
+      this.setState({showPagecountError: true});
+    }
+    this.setState({showUnitsError: this.state.units === ""});
+    this.setState({showDeliveryoptionError: !this.state.selectedDeliveryoption});
+    this.setState({showDeliverydateError: !this.state.deliverydate});
 
-    var part1local = {
-      produkt_id: this.state.selectedProductID,
-      ein_zwei_seitig: this.state.seitenoption,
-      seitenzahl: this.state.pagecount,
-      grammatur_id: this.state.selectedPaperweight,
-      randlos: this.state.borderless,
-      zustelloption_id: this.state.selectedDeliveryoption,
-      lieferdatum: this.state.deliverydate,
-      einheiten: this.state.units
-    };
-    this.setState({part1: part1local});
+    if (
+        !this.state.showProductError
+        && !this.state.showPageoptionError
+        && !this.state.showPaperweightsError
+        && !this.state.showPagecountError
+        && !this.state.showUnitsError
+        && !this.state.showDeliveryoptionError
+        && !this.state.showDeliverydateError
+      )
+    {
+      var part1local = {
+        produkt_id: this.state.selectedProductID,
+        ein_zwei_seitig: this.state.seitenoption,
+        seitenzahl: this.state.pagecount,
+        grammatur_id: this.state.selectedPaperweight,
+        randlos: this.state.borderless,
+        zustelloption_id: this.state.selectedDeliveryoption,
+        lieferdatum: this.state.deliverydate,
+        einheiten: this.state.units
+      };
+      this.setState({part1: part1local});
 
-    $.ajax({
-      type: "POST",
-      dataType: "json",
-      url: "https://wh3.wejwoda.local/LehrgangsprojektWeb/lib/calculation.php",
-      data: part1local,
-      context: this
-    })
-    .done(this.onResultAvailable)
-    .fail((xhr, status, errorThrown) => {
-      console.log("Error: " + errorThrown);
-      console.log("Status: " + status);
-    })
+      $.ajax({
+        type: "POST",
+        dataType: "json",
+        url: "https://wh3.wejwoda.local/LehrgangsprojektWeb/lib/calculation.php",
+        data: part1local,
+        context: this
+      })
+      .done(this.onResultAvailable)
+      .fail((xhr, status, errorThrown) => {
+        console.log("Error: " + errorThrown);
+        console.log("Status: " + status);
+      })
+    }
   }
 
   onSendClicked = (e) => {
@@ -253,6 +283,7 @@ class ProductSelect extends Component {
         success: function (msg) {
             if (msg)
             {
+              this.resetForm();
               // $('#printshop_form').submit();
               // $('#btn-send').html(msg);
             } else
@@ -280,13 +311,23 @@ class ProductSelect extends Component {
         break;
 
       default:
-        this.setState({[event.target.name]: event.target.value});
         switch (event.target.name) {
           case "selectedPaperweight":
-            // var p = this.state.products[event.target.value];
-            // console.log(p.maxseiten);
+            this.setState({[event.target.name]: event.target.value, maxseiten: this.state.paperweights.find(x => x.id === parseInt(event.target.value)).maxseiten});
             break;
+
+          case "pagecount":
+            this.setState({[event.target.name]: event.target.value});
+            if (event.target.value > parseInt(this.state.maxseiten)) {
+              this.setState({[event.target.name]: this.state.maxseiten});
+            }
+            if (event.target.value < parseInt(this.state.minseiten)) {
+              this.setState({[event.target.name]: this.state.minseiten});
+            }
+            break;
+
           default:
+            this.setState({[event.target.name]: event.target.value});
 
         }
 
@@ -325,7 +366,7 @@ class ProductSelect extends Component {
         <FormLabel component="legend">Produkt</FormLabel>
         <FormHelperText error hidden={ !this.state.showProductError }>Bitte wählen Sie ein Produkt</FormHelperText>
         <FormControl className={classes.formControl} fullWidth>
-          <Products products={this.state.products} selectedProductID={this.state.selectedProductID} handleChange={this.handleChange}/>
+          <Products name="selectedProductID" products={this.state.products} selectedProductID={this.state.selectedProductID} handleChange={this.handleChange}/>
         </FormControl>
       </Grid>
 
@@ -341,7 +382,7 @@ class ProductSelect extends Component {
       <Grid item>
         <FormLabel component="legend">Papier-Grammatur (g/m²)</FormLabel>
         <FormHelperText error hidden={ !this.state.showPaperweightsError }>Bitte wählen Sie eine Papier-Grammatur</FormHelperText>
-        <Paperweights paperweights={this.state.paperweights} selectedPaperweight={this.state.selectedPaperweight} handleChange={this.handleChange}/>
+        <Paperweights name="selectedPaperweight" paperweights={this.state.paperweights} selectedPaperweight={this.state.selectedPaperweight} handleChange={this.handleChange}/>
       </Grid>
 
       <Grid item>
@@ -350,25 +391,26 @@ class ProductSelect extends Component {
       </Grid>
 
       <Grid item>
-        <FormLabel component="legend">Seitenzahl</FormLabel>
+        <FormLabel component="legend">Seitenzahl min {this.state.minseiten} - max {this.state.maxseiten}</FormLabel>
         <FormHelperText error hidden={ !this.state.showPagecountError }>{this.state.pagecountErrortext}</FormHelperText>
-        <Input type="number" name="pagecount" inputProps={{min:10}} value={this.state.pagecount} onChange={this.handleChange}/>
+        <Input type="number" name="pagecount" inputProps={{min: this.state.minseiten, max: this.state.maxseiten}} value={this.state.pagecount} onChange={this.handleChange} />
       </Grid>
 
       <Grid item>
         <FormLabel component="legend">Anzahl Einheiten (Druckwerke)</FormLabel>
+        <FormHelperText error hidden={ !this.state.showUnitsError }>Es muss eine Anzahl Einheiten eingegeben werden.</FormHelperText>
         <Input type="number" name="units" inputProps={{min:1}} value={this.state.units} onChange={this.handleChange}/>
       </Grid>
 
       <Grid item>
         <FormLabel component="legend">Zustelltypen</FormLabel>
-        {/* <RadioGroup aria-label="Zustelltypen" name="deliveryoption" row className={classes.group} value={this.state.selectedDeliveryoption} onChange={this.handleChange}> */}
+        <FormHelperText error hidden={ !this.state.showDeliveryoptionError }>Bitte wählen Sie einen Zustelltyp.</FormHelperText>
         <Deliveryoptions deliveryoptions={this.state.deliveryoptions} value={this.state.deliveryoption} onChange={this.handleChange}/>
-        {/* </RadioGroup> */}
       </Grid>
 
       <Grid item>
         <FormLabel component="legend">gewünschter Liefertermin</FormLabel>
+        <FormHelperText filled	 error hidden={ !this.state.showDeliverydateError }>Bitte füllen Sie einen Liefertermin aus.</FormHelperText>
         <TextField name="deliverydate" type="date" className={classes.textField} onChange={this.handleChange} InputLabelProps={{shrink: true,}}/>
       </Grid>
 
@@ -392,7 +434,7 @@ class ProductSelect extends Component {
               <TableCell align="right" padding="none"></TableCell>
               <TableCell align="right" padding="none">{this.state.pricePerPage}</TableCell>
             </TableRow>
-            {this.state.priceAddBorderlessHidden ? '' : ta(this.state.priceAddBorderless,this.state.priceAddBorderlessAdd)}
+            {this.state.priceAddBorderlessHidden ? null : ta(this.state.priceAddBorderless,this.state.priceAddBorderlessAdd)}
             <TableRow>
               <TableCell component="th" scope="row" padding="none">+ Basispreis für Cover</TableCell>
               <TableCell align="right" padding="none">{this.state.priceAddBaseCoverAdd}</TableCell>
