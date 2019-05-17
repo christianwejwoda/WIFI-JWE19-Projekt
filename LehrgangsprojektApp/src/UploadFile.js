@@ -2,7 +2,14 @@ import $ from "jquery";
 // var progressBar = $('.progressBar'), bar = $('.progressBar .bar'), percent = $('.progressBar .percent');
 
 class UploadFile {
-  static upload(session_id, file) {
+  // constructor(props) {
+  //   super(props);
+  //
+  //   this.state = {
+  //     server: props.server
+  //   }
+  // }
+  static upload(session_id, file, server) {
   // var progressBar = $('#progressBar_' + $(this)[0].id);
   // var bar = $('#bar_' + $(this)[0].id)
   // var percent = $('#percent_' + $(this)[0].id);
@@ -21,7 +28,7 @@ class UploadFile {
       // form_data.append("session_id", session_id);
       form_data.append("file", prop);
       $.ajax({
-        url:"https://192.168.72.107/LehrgangsprojektWeb/uploadFile.php?session_id=" + session_id,
+        url:""+ server +"/LehrgangsprojektWeb/uploadFile.php?session_id=" + session_id,
         data:form_data,
         method:"POST",
         contentType:false,

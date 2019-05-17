@@ -66,6 +66,7 @@ class ProductSelect extends Component {
     super(props);
 
     this.state = {
+      server: props.server,
       input: "",
       result: null,
       products: [], selectedProductID: "",
@@ -123,11 +124,12 @@ class ProductSelect extends Component {
   resetForm = () => {
       this.setState(this.baseState)
     }
+
   addProducts = () => {
     $.ajax({
       type: "POST",
       dataType: "json",
-      url: "https://wh3.wejwoda.local/LehrgangsprojektWeb/api/produkte",
+      url: ""+ this.state.server +"/LehrgangsprojektWeb/api/produkte",
       context: this
     })
     .done((res) =>
@@ -145,7 +147,7 @@ class ProductSelect extends Component {
     $.ajax({
       type: "POST",
       dataType: "json",
-      url: "https://wh3.wejwoda.local/LehrgangsprojektWeb/api/grammaturen",
+      url: ""+ this.state.server +"/LehrgangsprojektWeb/api/grammaturen",
       context: this
     })
     .done((res) =>
@@ -163,7 +165,7 @@ class ProductSelect extends Component {
     $.ajax({
       type: "POST",
       dataType: "json",
-      url: "https://wh3.wejwoda.local/LehrgangsprojektWeb/api/zustelltypen",
+      url: ""+ this.state.server +"/LehrgangsprojektWeb/api/zustelltypen",
       context: this
     })
     .done((res) =>
@@ -245,7 +247,7 @@ class ProductSelect extends Component {
       $.ajax({
         type: "POST",
         dataType: "json",
-        url: "https://wh3.wejwoda.local/LehrgangsprojektWeb/lib/calculation.php",
+        url: ""+ this.state.server +"/LehrgangsprojektWeb/lib/calculation.php",
         data: part1local,
         context: this
       })
@@ -276,7 +278,7 @@ class ProductSelect extends Component {
 
     $.ajax({
         type: "POST",
-        url: "https://wh3.wejwoda.local/LehrgangsprojektWeb/auftragspeichern.php",
+        url: ""+ this.state.server +"/LehrgangsprojektWeb/auftragspeichern.php",
         dataType: "json",
         data: partLocal,
         context: this,
@@ -306,7 +308,7 @@ class ProductSelect extends Component {
         break;
 
       case "file":
-        UploadFile.upload(this.state.session_id, event.target.files[0]);
+        UploadFile.upload(this.state.session_id, event.target.files[0], this.state.server);
         this.setState({[event.target.name]: event.target.value});
         break;
 

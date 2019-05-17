@@ -49,9 +49,14 @@ const styles = theme => ({
   });
 
 class FullWidthTabs extends React.Component {
-  state = {
-    value: 0,
-  };
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      server: props.server,
+      value: 0,
+    }
+  }
 
   handleChange = (event, value) => {
     this.setState({ value });
@@ -96,7 +101,7 @@ class FullWidthTabs extends React.Component {
           <TabContainer dir={theme.direction}><Administration/></TabContainer>
         </SwipeableViews> */}
         <Paper className={classes.paper}>
-          <ProductSelect />
+          <ProductSelect server={this.state.server}/>
         </Paper>
       </div>
     );

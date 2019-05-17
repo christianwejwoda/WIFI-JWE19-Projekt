@@ -20,12 +20,15 @@ const theme = createMuiTheme({
   },
 });
 
-const rootElement = (<Router>
+const rootElement = (
+  <Router>
   <MuiThemeProvider theme={theme} >
       <CssBaseline />
-      <App />
+      <App server="http://localhost" />
+      {/* <App server="https://wh3.wejwoda.local" /> */}
   </MuiThemeProvider>
-</Router>);
+</Router>
+);
 
 const startApp = () => {
   ReactDOM.render(rootElement, document.getElementById('root'));
