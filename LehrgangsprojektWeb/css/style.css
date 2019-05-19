@@ -1,17 +1,7 @@
-html,
-body {
-  margin: 0;
-  padding: 0;
-  /* background-image: url("../img/background_bg.jpg"); */
-  font-size: 0.8rem;// !important;
-}
 
 /* ****** */
 /* Header */
 /* ****** */
-.header {
-  margin-bottom: 4em;
-}
 .header a {
   color: black;
   text-decoration: none;
@@ -19,15 +9,13 @@ body {
 .bannerrow {
   background-image: url("../img/pexels-photo-191429_1.jpeg");
   background-size: cover;
-  width: 100%;
-  height: 15em;
+  height: 5em;
 }
 h1 {
   position: absolute;
   bottom: 0;
   left: 0;
   font-size: 4vw;
-  /* font-size: 5em; */
 }
 
 .header_companyname {
@@ -35,13 +23,13 @@ h1 {
   height: 100%;
 }
 .header_companyname img {
-  width: 100px;
-  height: 100px;
+  width: 50px;
+  height: 50px;
 }
 .header_companyname a {
   display: inline-block;
   align-self: flex-end;
-  font-size: 3rem;
+  font-size: 1rem;
 }
 .header_companyname_text1 {
     background-color: white;
@@ -59,7 +47,7 @@ h1 {
 /* **** */
 .menurow {
   background-color: red;
-  height: 4em;
+  height: 1em;
   align-items: center;
 }
 .menurow ul {
@@ -86,7 +74,7 @@ h1 {
   padding-right: 25px;
   text-align: left;
   transition: all 0.3s ease;
-  font-size: 1.5em;
+  font-size: 0.5em;
 }
 .menurow ul li a:hover {
   /* font-size: 2em; */
@@ -108,8 +96,12 @@ h1 {
 /* ******* */
 /* general */
 /* ******* */
+.maxWidth {
+  max-width: 1024px;
+}
 .wrapper {
-  background-color: var(--light);
+  background-color: lightgray;
+   /* var(--light); */
   border-radius: 10px;
   padding: 2em;
 }
@@ -138,7 +130,36 @@ h1 {
   font-size: 0.5em;
   border-radius: .25rem;
 }
+i {
+  border: solid black;
+  border-width: 0 3px 3px 0;
+  display: inline-block;
+  padding: 3px;
+}
 
+.direction {
+  /* down */
+  transform: rotate(45deg);
+  -webkit-transform: rotate(45deg);
+}
+
+/* .right {
+  transform: rotate(-45deg);
+  -webkit-transform: rotate(-45deg);
+}
+.left {
+  transform: rotate(135deg);
+  -webkit-transform: rotate(135deg);
+}
+
+.up {
+  transform: rotate(-135deg);
+  -webkit-transform: rotate(-135deg);
+}
+.down {
+  transform: rotate(45deg);
+  -webkit-transform: rotate(45deg);
+} */
 /* Progressbar */
 .progressBar {
 	/* background: none repeat scroll 0 0 #E0E0E0; */
@@ -164,3 +185,39 @@ h1 {
 	width: 100%;
 }
 /* https://benmarshall.me/styling-file-inputs/ */
+
+/* // Large devices (desktops, 992px and up) */
+@media (min-width: 576px) {
+  .direction {
+    /* right */
+    transform: rotate(-45deg);
+    -webkit-transform: rotate(-45deg);
+  }
+}
+
+/* // Large devices (desktops, 992px and up) */
+@media (min-width: 992px) {
+  .header {
+    margin-bottom: 4em;
+  }
+
+  .header_companyname img {
+    width: 100px;
+    height: 100px;
+  }
+  .header_companyname a {
+    font-size: 3rem;
+  }
+
+  .bannerrow {
+    height: 15em;
+  }
+
+  .menurow {
+    height: 4em;
+  }
+  .menurow ul li a {
+    font-size: 1.5em;
+  }
+
+}
