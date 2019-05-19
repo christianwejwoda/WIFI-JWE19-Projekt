@@ -10,6 +10,7 @@
   background-image: url("../img/pexels-photo-191429_1.jpeg");
   background-size: cover;
   height: 5em;
+  justify-content: center;
 }
 h1 {
   position: absolute;
@@ -29,7 +30,7 @@ h1 {
 .header_companyname a {
   display: inline-block;
   align-self: flex-end;
-  font-size: 1rem;
+  font-size: 2rem;
 }
 .header_companyname_text1 {
     background-color: white;
@@ -47,7 +48,7 @@ h1 {
 /* **** */
 .menurow {
   background-color: red;
-  height: 1em;
+  height: 2em;
   align-items: center;
 }
 .menurow ul {
@@ -61,11 +62,7 @@ h1 {
   text-transform: uppercase;
   align-items: center;
 }
-.menurow ul li {
-
-}
 .menurow ul li a {
-
   height: auto;
   display: block;
   background-color: var(--grey-dark);
@@ -74,10 +71,9 @@ h1 {
   padding-right: 25px;
   text-align: left;
   transition: all 0.3s ease;
-  font-size: 0.5em;
+  font-size: 1em;
 }
 .menurow ul li a:hover {
-  /* font-size: 2em; */
   color: gray;
 }
 .menumarked a {

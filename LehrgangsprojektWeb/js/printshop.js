@@ -49,7 +49,7 @@ $('#btn-send').click(function() {
 
     $.ajax({
         type: "POST",
-        url: "auftragspeichern.php",
+        url: "lib/auftragspeichern.php",
         dataType: "json",
         data: sendinfo,
         context: this,
@@ -374,6 +374,8 @@ function check_part2_sub()
   ok &= check_strasse();
   ok &= check_plz_ort();
   ok &= check_email();
+  ok &= check_deckblatt_datei();
+  ok &= check_inhalt_datei();
 
   if (ok) {
     $('#btn-send').show();
@@ -481,6 +483,34 @@ $('#deckblatt_text').change(function() {
 });
 function check_deckblatt_text() {
   var answer = $('#deckblatt_text').val() != "";
+  if (answer) {
+    $('#deckblatt_text_error')[0].textContent="";
+  } else {
+    $('#deckblatt_text_error')[0].textContent="Text für das Deckblatt fehlt";
+  }
+  return answer;
+};
+
+// check for deckblatt_datei
+$('#deckblatt_datei').change(function() {
+  check_part2_sub();
+});
+function check_deckblatt_datei() {
+  var answer = $('#deckblatt_datei').val() != "";
+  if (answer) {
+    $('#deckblatt_text_error')[0].textContent="";
+  } else {
+    $('#deckblatt_text_error')[0].textContent="Text für das Deckblatt fehlt";
+  }
+  return answer;
+};
+
+// check for deckblatt_datei
+$('#inhalt_datei').change(function() {
+  check_part2_sub();
+});
+function check_inhalt_datei() {
+  var answer = $('#inhalt_datei').val() != "";
   if (answer) {
     $('#deckblatt_text_error')[0].textContent="";
   } else {

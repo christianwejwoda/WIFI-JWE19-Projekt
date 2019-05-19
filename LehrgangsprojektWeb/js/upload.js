@@ -17,7 +17,7 @@ $(document).on('change', '#inhalt_datei, #deckblatt_datei', function () {
       var form_data = new FormData();
       form_data.append("file", prop);
       $.ajax({
-        url:"uploadFile.php",
+        url:"lib/uploadFile.php",
         method:"POST",
         data:form_data,
         contentType:false,
