@@ -1,6 +1,6 @@
  <?php
 
- require_once "../setup.php";
+ require_once "../lib/setup.php";
  require_once "content/config.php";
 
  if (empty($_SESSION["benutzer_id"])) {

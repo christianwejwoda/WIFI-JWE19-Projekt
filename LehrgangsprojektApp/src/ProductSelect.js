@@ -129,7 +129,7 @@ class ProductSelect extends Component {
     $.ajax({
       type: "POST",
       dataType: "json",
-      url: ""+ this.state.server +"/LehrgangsprojektWeb/api/produkte",
+      url: ""+ this.state.server +"/api/produkte",
       context: this
     })
     .done((res) =>
@@ -147,7 +147,7 @@ class ProductSelect extends Component {
     $.ajax({
       type: "POST",
       dataType: "json",
-      url: ""+ this.state.server +"/LehrgangsprojektWeb/api/grammaturen",
+      url: ""+ this.state.server +"/api/grammaturen",
       context: this
     })
     .done((res) =>
@@ -165,7 +165,7 @@ class ProductSelect extends Component {
     $.ajax({
       type: "POST",
       dataType: "json",
-      url: ""+ this.state.server +"/LehrgangsprojektWeb/api/zustelltypen",
+      url: ""+ this.state.server +"/api/zustelltypen",
       context: this
     })
     .done((res) =>
@@ -247,7 +247,7 @@ class ProductSelect extends Component {
       $.ajax({
         type: "POST",
         dataType: "json",
-        url: ""+ this.state.server +"/LehrgangsprojektWeb/lib/calculation.php",
+        url: ""+ this.state.server +"/lib/calculation.php",
         data: part1local,
         context: this
       })
@@ -278,7 +278,7 @@ class ProductSelect extends Component {
 
     $.ajax({
         type: "POST",
-        url: ""+ this.state.server +"/LehrgangsprojektWeb/auftragspeichern.php",
+        url: ""+ this.state.server +"/lib/auftragspeichern.php",
         dataType: "json",
         data: partLocal,
         context: this,
@@ -294,7 +294,7 @@ class ProductSelect extends Component {
             }
         },
         error: function(msg) {
-          console.log(msg.responseText);
+          alert(msg.responseText);
           // $('#btn-send').html(msg.responseText);
         }
     });
@@ -541,7 +541,7 @@ class ProductSelect extends Component {
 
       <Grid item className={classes.button}>
         <Button variant="contained" color="primary" className={classes.button} onClick={this.onSendClicked.bind(this)}>
-          Anfrage abesenden
+          Anfrage absenden
           <Send className={classes.rightIcon}>send</Send>
         </Button>
       </Grid>

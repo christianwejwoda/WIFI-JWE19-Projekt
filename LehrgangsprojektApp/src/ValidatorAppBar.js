@@ -35,7 +35,7 @@ function ValidatorAppBar(props) {
         <AppBar position="static">
           <Toolbar>
             <Typography variant="h6" color="inherit" className={classes.grow}>
-              the Printshop
+              das Druckhaus
             </Typography>
           </Toolbar>
         </AppBar>

@@ -21,6 +21,8 @@ var json_zustelloption_id = "";
 var json_randlos = "";
 var json_lieferdatum = "";
 var json_einheiten = "";
+var $deckblatttexteingabe_hidden = false;
+var $deckblattfarbauswahl_hidden = false;
 
 $('#btn-send').click(function() {
   if (check_all_sub() && check_part2_sub()) {
@@ -158,13 +160,17 @@ function check_all()
 
                      if (msg["deckblattfarbauswahl"] == 1) {
                        $('#deckblattfarbauswahl').show();
+                       $deckblattfarbauswahl_hidden = false;
                      } else {
                        $('#deckblattfarbauswahl').hide();
+                       $deckblattfarbauswahl_hidden = true;
                      }
 
                      if (msg["deckblatttexteingabe"] == 1) {
+                       $deckblatttexteingabe_hidden = false;
                        $('#deckblatttexteingabe').show();
                      } else {
+                       $deckblatttexteingabe_hidden = true;
                        $('#deckblatttexteingabe').hide();
                      }
 
@@ -468,11 +474,15 @@ $('#farbe').change(function() {
   check_part2_sub();
 });
 function check_favcolor() {
-  var answer = $('#farbe').val() != "";
-  if (answer) {
-    $('#farbe_error')[0].textContent="";
+  if ($deckblatttexteingabe_hidden) {
+    var answer = true;
   } else {
-    $('#farbe_error')[0].textContent="Farbe fehlt";
+    var answer = $('#farbe').val() != "";
+    if (answer) {
+      $('#farbe_error')[0].textContent="";
+    } else {
+      $('#farbe_error')[0].textContent="Farbe fehlt";
+    }
   }
   return answer;
 };
@@ -482,11 +492,15 @@ $('#deckblatt_text').change(function() {
   check_part2_sub();
 });
 function check_deckblatt_text() {
-  var answer = $('#deckblatt_text').val() != "";
-  if (answer) {
-    $('#deckblatt_text_error')[0].textContent="";
+  if ($deckblatttexteingabe_hidden) {
+    var answer = true;
   } else {
-    $('#deckblatt_text_error')[0].textContent="Text für das Deckblatt fehlt";
+    var answer = $('#deckblatt_text').val() != "";
+    if (answer) {
+      $('#deckblatt_text_error')[0].textContent="";
+    } else {
+      $('#deckblatt_text_error')[0].textContent="Text für das Deckblatt fehlt";
+    }
   }
   return answer;
 };
@@ -498,9 +512,9 @@ $('#deckblatt_datei').change(function() {
 function check_deckblatt_datei() {
   var answer = $('#deckblatt_datei').val() != "";
   if (answer) {
-    $('#deckblatt_text_error')[0].textContent="";
+    $('#deckblatt_datei_error')[0].textContent="";
   } else {
-    $('#deckblatt_text_error')[0].textContent="Text für das Deckblatt fehlt";
+    $('#deckblatt_datei_error ')[0].textContent="Datei für das Deckblatt fehlt";
   }
   return answer;
 };
@@ -512,9 +526,9 @@ $('#inhalt_datei').change(function() {
 function check_inhalt_datei() {
   var answer = $('#inhalt_datei').val() != "";
   if (answer) {
-    $('#deckblatt_text_error')[0].textContent="";
+    $('#inhalt_datei_error')[0].textContent="";
   } else {
-    $('#deckblatt_text_error')[0].textContent="Text für das Deckblatt fehlt";
+    $('#inhalt_datei_error')[0].textContent="Datei für den Inhalt fehlt";
   }
   return answer;
 };

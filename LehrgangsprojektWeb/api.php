@@ -1,5 +1,5 @@
 <?php
-require_once "setup.php";
+require_once "lib/setup.php";
 header('Access-Control-Allow-Origin: *');
 header("Content-Type: application/json");
 
@@ -27,6 +27,24 @@ if (empty($parameter)) {
 }
 
 switch ($parameter[0]) {
+  case 'login':
+    $ausgabe = array(
+      "status" => 0,
+      "result" => ""
+    );
+    if (!empty($_POST)) {
+      $user = new db_benutzer("benutzername = ?," . $_POST["username"]);
+      if (!empty($user)) {
+        if (password_verify($_POST["password"],$user->passwort)) {
+          $ausgabe["status"] = 1;
+          $ausgabe["result"] = session_id();
+        }
+      }
+    }
+    echo json_encode($ausgabe);
+    exit;
+    break;
+
   case 'produkte':
     // Liste alles Produkte ausgeben
     $ausgabe = array(

@@ -3,7 +3,7 @@ require_once "lib/setup.php";
 ?>
 
 <!-- <div class="container-fluid"> -->
-<div class="container-fluid maxWidth">
+<div class="container maxWidth">
   <form class="masterForm wrapper" id="printshop_form" action="<?php echo basename(__FILE__, '.php'); ?>" method="post">
     <input type="text" name="session_id" id="session_id" value="<?php echo session_id(); ?>" hidden>
 
@@ -244,25 +244,23 @@ require_once "lib/setup.php";
         <!-- Deckblatt Upload -->
         <div class="form-group row">
           <label class="col-12 col-lg-4 col-form-label" for="deckblatt_datei">Deckblatt-Datei (PDF):</label>
-          <input class="col-12 col-lg-2 form-control-file" type="file" accept=".pdf" name="deckblatt_datei[]" id="deckblatt_datei">
+          <input class="col-12 col-lg-2 form-control-file" type="file" accept=".pdf" name="deckblatt_datei[]" id="deckblatt_datei"/>
           <div class="progressBar col-12 col-lg-6" id="progressBar_deckblatt_datei">
             <div class="bar" id="bar_deckblatt_datei"></div>
             <div class="percent" id="percent_deckblatt_datei">0%</div>
           </div>
-          <span class="col-12 col-lg-4 "></span>
-          <span class="col-12 col-lg-8 error_message" id="deckblatt_datei_error"></span>
+          <span class="col-12 col-lg-6 error_message" id="deckblatt_datei_error"></span>
         </div>
 
         <!-- Content Upload -->
         <div class="form-group row">
           <label class="col-12 col-lg-4  col-form-label" for="inhalt_datei">Inhalt-Datei (PDF):</label>
-          <input class="col-12 col-lg-2 form-control-file" type="file" accept=".pdf" name="inhalt_datei[]" id="inhalt_datei">
+          <input class="col-12 col-lg-2 form-control-file" type="file" accept=".pdf" name="inhalt_datei[]" id="inhalt_datei"/>
           <div class="progressBar col-12 col-lg-6" id="progressBar_inhalt_datei">
             <div class="bar" id="bar_inhalt_datei"></div>
             <div class="percent" id="percent_inhalt_datei">0%</div>
           </div>
-          <span class="col-12 col-lg-4 "></span>
-          <span class="col-12 col-lg-8 error_message" id="inhalt_datei_error"></span>
+          <span class="col-12 col-lg-6 error_message" id="inhalt_datei_error"></span>
         </div>
       </div>
     </div>

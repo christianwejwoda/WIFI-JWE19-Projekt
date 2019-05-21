@@ -47,7 +47,7 @@ if (!empty($_POST)) {
 }
 ?>
         <form class="container-fluid" action="<?php echo basename(__FILE__, '.php'); ?>" method="post">
-          <h2>Zustelloptionene:</h2>
+          <h2>Zustelloptionen:</h2>
           <?php
             echo '<div class="form-group row">';
             echo '<div class="col-2"></div>';

@@ -7,13 +7,14 @@ import AppBar from '@material-ui/core/AppBar';
 // import Tab from '@material-ui/core/Tab';
 import Toolbar from '@material-ui/core/Toolbar';
 import Typography from '@material-ui/core/Typography';
-import Button from '@material-ui/core/Button';
-import IconButton from '@material-ui/core/IconButton';
-import MenuIcon from '@material-ui/icons/Menu';
+// import Button from '@material-ui/core/Button';
+// import IconButton from '@material-ui/core/IconButton';
+// import MenuIcon from '@material-ui/icons/Menu';
 import Paper from '@material-ui/core/Paper';
 // import Grid from '@material-ui/core/Grid';
 
 import ProductSelect from "./ProductSelect";
+import Login from "./Login";
 // import Administration from "./Administration";
 
 function TabContainer({ children, dir }) {
@@ -67,39 +68,21 @@ class FullWidthTabs extends React.Component {
   };
 
   render() {
-    const { classes, theme } = this.props;
+    const { classes } = this.props;
 
     return (
       <div className={classes.root}>
         <AppBar position="static" color="default">
-          {/* <Tabs
-            value={this.state.value}
-            onChange={this.handleChange}
-            indicatorColor="primary"
-            textColor="primary"
-            variant="fullWidth"
-          >
-            <Tab label="Produkt zusammenstellen" />
-            <Tab label="Administration" />
-          </Tabs> */}
           <Toolbar>
-          <IconButton className={classes.menuButton} color="inherit" aria-label="Menu">
-            <MenuIcon />
-          </IconButton>
-          <Typography variant="h6" color="inherit" className={classes.grow}>
-            Produkt zusammenstellen
-          </Typography>
-          <Button color="inherit">Login</Button>
-        </Toolbar>
+            {/* <IconButton className={classes.menuButton} color="inherit" aria-label="Menu">
+              <MenuIcon />
+            </IconButton> */}
+            <Typography variant="h6" color="inherit" className={classes.grow}>
+              Produkt zusammenstellen
+            </Typography>
+            <Login server={this.state.server}/>
+          </Toolbar>
         </AppBar>
-        {/* <SwipeableViews
-          axis={theme.direction === 'rtl' ? 'x-reverse' : 'x'}
-          index={this.state.value}
-          onChangeIndex={this.handleChangeIndex}
-        >
-          <TabContainer dir={theme.direction}><ProductSelect /></TabContainer>
-          <TabContainer dir={theme.direction}><Administration/></TabContainer>
-        </SwipeableViews> */}
         <Paper className={classes.paper}>
           <ProductSelect server={this.state.server}/>
         </Paper>

@@ -32,6 +32,8 @@ class db_auftragspeichern
   {
     $a = new db_auftrag($this->_values);
     $a->save();
+    $m = new lib_mailsender($this->_values);
+    $m->send();
     return array("fertig" => "fertig");
   }
 

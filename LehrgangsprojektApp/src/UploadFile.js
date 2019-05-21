@@ -28,7 +28,7 @@ class UploadFile {
       // form_data.append("session_id", session_id);
       form_data.append("file", prop);
       $.ajax({
-        url:""+ server +"/LehrgangsprojektWeb/uploadFile.php?session_id=" + session_id,
+        url:""+ server +"/lib/uploadFile.php?session_id=" + session_id,
         data:form_data,
         method:"POST",
         contentType:false,
