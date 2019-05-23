@@ -27,6 +27,42 @@ if (empty($parameter)) {
 }
 
 switch ($parameter[0]) {
+  case 'preisspeichern':
+    $ausgabe = array(
+      "status" => 0,
+      "result" => ""
+    );
+    if (empty($_POST)) {
+    } else {
+      $auftrag = new db_auftrag((int)$_POST["id"]);
+      $auftrag->preis_fix = $_POST["preis_fix"];
+      $auftrag->geprueft = $_POST["geprueft"];
+      $auftrag->save();
+      $ausgabe["status"] = 1;
+    }
+    echo json_encode($ausgabe);
+    break;
+
+  case 'auftragcalculated':
+    $ausgabe = array(
+      "status" => 0,
+      "result" => ""
+    );
+    if (empty($parameter[1])) {
+    } else {
+      $auftrag = new db_auftrag((int)$parameter[1]);
+      $auftrag = $auftrag->getRow();
+      $calc = new db_calculation($auftrag);
+      $calc->validieren();
+      $auftrag["calc"] = $calc->get_answer();
+
+      $ausgabe["status"] = 1;
+      $ausgabe["result"] = $auftrag;
+    }
+
+    echo json_encode($ausgabe);
+    break;
+
   case 'login':
     $ausgabe = array(
       "status" => 0,
@@ -40,6 +76,23 @@ switch ($parameter[0]) {
           $ausgabe["result"] = session_id();
         }
       }
+    }
+    echo json_encode($ausgabe);
+    exit;
+    break;
+
+  case 'auftraege':
+    // Liste alles Auftraege ausgeben
+    $ausgabe = array(
+      "status" => 1,
+      "result" => array()
+    );
+    if (empty($parameter[1])) {
+      $result = new db_auftraege();
+      $ausgabe["result"][] =$result->getRows();
+    } else {
+      $result = new db_auftrag((int)$parameter[1]);
+      $ausgabe["result"][] = $result->getRow();
     }
     echo json_encode($ausgabe);
     exit;

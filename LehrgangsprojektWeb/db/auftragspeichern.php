@@ -22,6 +22,10 @@ class db_auftragspeichern
       $file = new db_uploaddatei("session_id = ? AND org_dateiname = ?,{$this->_values['session_id']},{$f1}");
       $this->_values['inhalt_datei'] = $file->id;
 
+      $calc = new db_calculation($this->_values);
+      $calc->validieren();
+      $calc_answers = $calc->get_answer();
+      
     } catch (Exception $e) {
 
     }

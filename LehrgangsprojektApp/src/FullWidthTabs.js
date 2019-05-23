@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
+import { Redirect } from "react-router-dom";
 // import SwipeableViews from 'react-swipeable-views';
 import AppBar from '@material-ui/core/AppBar';
 // import Tabs from '@material-ui/core/Tabs';
@@ -59,6 +60,10 @@ class FullWidthTabs extends React.Component {
     }
   }
 
+  onLogin = () => {
+    this.setState({loginstate: true});
+  }
+
   handleChange = (event, value) => {
     this.setState({ value });
   };
@@ -69,7 +74,14 @@ class FullWidthTabs extends React.Component {
 
   render() {
     const { classes } = this.props;
-
+    if (this.state.loginstate) {
+      const location = {
+          pathname: "/Administration",
+          // state: { result: result }
+          }
+      return <Redirect to={location} push/>
+    }
+    
     return (
       <div className={classes.root}>
         <AppBar position="static" color="default">
@@ -80,7 +92,7 @@ class FullWidthTabs extends React.Component {
             <Typography variant="h6" color="inherit" className={classes.grow}>
               Produkt zusammenstellen
             </Typography>
-            <Login server={this.state.server}/>
+            <Login server={this.state.server} onLogin={this.onLogin}/>
           </Toolbar>
         </AppBar>
         <Paper className={classes.paper}>

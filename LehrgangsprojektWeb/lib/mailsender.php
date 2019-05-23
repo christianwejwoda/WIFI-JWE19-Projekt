@@ -9,11 +9,15 @@ class lib_mailsender {
     $this->_daten = $daten;
   }
 
-  public function send () {
+  public function send ($auch_an_kunde_senden = 0) {
 
 
     // mehrere Empfänger
-    $empfaenger  = 'christian@wejwoda.at'; // beachte das Komma zum trennen von Empfängern
+    if ($auch_an_kunde_senden == 1) {
+      $empfaenger  = $this->_daten["vorname"] . " " . $this->_daten["nachname"] . " <" . $this->_daten["email"] . ">"; // beachte das Komma zum trennen von Empfängern
+    } else {
+      $empfaenger  = 'Christian Wejwoda <christian@wejwoda.at>'; // beachte das Komma zum trennen von Empfängern
+    }
 
     // Betreff
     $betreff = 'Anfrage Druckhaus';
@@ -88,7 +92,9 @@ class lib_mailsender {
     $header[] = 'Content-type: text/html; charset=utf-8';//=iso-8859-1';
 
     // zusätzliche Header
-    $header[] = 'To: Christian Wejwoda <christian@wejwoda.at>';
+    if ($auch_an_kunde_senden == 1) {
+      $header[] = 'Cc: Christian Wejwoda <christian@wejwoda.at>';
+    }
     $header[] = 'From: Christian Wejwoda <christian@wejwoda.at>';
     // $header[] = 'Cc: geburtstagsarchiv@example.com';
     // $header[] = 'Bcc: geburtstagscheck@example.com';

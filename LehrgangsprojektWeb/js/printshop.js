@@ -46,7 +46,12 @@ $('#btn-send').click(function() {
           farbe: $('#farbe').val(),
           deckblatt_text: $('#deckblatt_text').val(),
           deckblatt_datei: $('#deckblatt_datei')[0].files[0]["name"],
-          inhalt_datei: $('#inhalt_datei')[0].files[0]["name"]
+          inhalt_datei: $('#inhalt_datei')[0].files[0]["name"],
+          price_per_page: $('#price_per_page_form').val(),
+          price_add_randlos_add: $('#price_add_randlos_add_form').val(),
+          price_add_cover_add: $('#price_add_cover_add_form').val(),
+          price_delivery_add: $('#price_delivery_add_form').val(),
+          produktionszeit: $('#produktionszeit_form').val()
     };
 
     $.ajax({
@@ -131,6 +136,12 @@ function check_all()
                      var p4 = parseFloat(msg["preis4"]);
                      var p5 = parseFloat(msg["preis5"]);
                      var p5add = parseFloat(msg["preis5add"]);
+
+                     $('#price_per_page_form').val(p1);
+                     $('#price_add_randlos_add_form').val(p2add);
+                     $('#price_add_cover_add_form').val(p3add);
+                     $('#price_delivery_add_form').val(p5add);
+                     $('#produktionszeit_form').val(parseFloat(msg["produktionszeit"]));
 
                      $('#price_per_page').html(p1.toFixed(2) + " &euro;");
                      if (isNaN(p2)) {

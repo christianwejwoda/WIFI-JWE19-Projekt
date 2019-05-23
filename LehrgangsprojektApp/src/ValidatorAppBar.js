@@ -53,7 +53,7 @@ function ValidatorAppBar(props) {
             <ArrowBack />
           </IconButton>
           <Typography variant="h6" color="inherit" className={classes.grow}>
-            Result List
+            Administration
           </Typography>
         </Toolbar>
       </AppBar>

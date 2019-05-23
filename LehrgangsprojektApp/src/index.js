@@ -22,13 +22,13 @@ const theme = createMuiTheme({
 
 const rootElement = (
   <Router>
-  <MuiThemeProvider theme={theme} >
-      <CssBaseline />
-      {/* <App server="http://localhost/LehrgangsprojektWeb" /> */}
-      <App server="https://druckhaus.jwe.obinet.at" />
-      {/* <App server="https://wh3.wejwoda.local" /> */}
-  </MuiThemeProvider>
-</Router>
+    <MuiThemeProvider theme={theme} >
+        <CssBaseline />
+        {/* <App server="http://localhost/LehrgangsprojektWeb" /> */}
+        <App server="https://druckhaus.jwe.obinet.at" />
+        {/* <App server="https://wh3.wejwoda.local" /> */}
+    </MuiThemeProvider>
+  </Router>
 );
 
 const startApp = () => {

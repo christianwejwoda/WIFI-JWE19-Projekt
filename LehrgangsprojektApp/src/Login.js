@@ -30,6 +30,7 @@ class Login extends React.Component {
 
     this.state = {
       server: props.server,
+      onLogin: props.onLogin,
       session_id: "",
       anchorEl: null,
       username: "",
@@ -74,7 +75,8 @@ class Login extends React.Component {
         this.setState({session_id: res.result});
 
         if(this.state.loginstate === 1){
-          alert("Authentication OK " + this.state.session_id);
+          // alert("Authentication OK " + this.state.session_id);
+          this.state.onLogin();
         }else{
           alert("Authentication FAILED");
         }
@@ -119,7 +121,7 @@ class Login extends React.Component {
           PaperProps={{className: classes.root}}
         >
           <Paper className={classes.paper}>
-            <Typography variant="title" align="justify" className={classes.typography} >Bitte hier für den Adminbereich einloggen.</Typography>
+            <Typography variant="h6" align="justify" className={classes.typography} >Bitte hier für den Adminbereich einloggen.</Typography>
 
             <Grid container className={classes.root} spacing={8} direction="column" >
 

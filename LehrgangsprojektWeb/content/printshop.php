@@ -140,6 +140,12 @@ require_once "lib/setup.php";
     </div>
 
     <div class="preisanzeige" id="preisanzeige">
+      <input type="text" name="price_per_page_form" id="price_per_page_form" value="" hidden>
+      <input type="text" name="price_add_randlos_add_form" id="price_add_randlos_add_form" value="" hidden>
+      <input type="text" name="price_add_cover_add_form" id="price_add_cover_add_form" value="" hidden>
+      <input type="text" name="price_delivery_add_form" id="price_delivery_add_form" value="" hidden>
+      <input type="text" name="produktionszeit_form" id="produktionszeit_form" value="" hidden>
+
       <p id="preisanzeige_fehler"></p>
       <p class='h3'>Angebot</p>
       <div class='form-group row'>
