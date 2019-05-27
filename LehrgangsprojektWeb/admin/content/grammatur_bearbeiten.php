@@ -54,7 +54,7 @@ if (!empty($_POST)) {
         <form class="" action="<?php echo basename(__FILE__, '.php'); ?>" method="post">
           <h2>Grammaturen:</h2>
           <?php
-            echo '<div class="form-group row">';
+            echo '<div class="form-group row d-none d-md-flex">';
             echo '<div class="col-3"> </div>';
             echo '<label class="form-label col-1">g/m²</label>';
             echo '<label class="form-label col-1">Preis pro Blatt &euro;</label>';
@@ -67,42 +67,57 @@ if (!empty($_POST)) {
             foreach ($gramaturen->get() as $gramatur)
             {
               echo '<div class="form-group row">';
-              echo '<label class="form-label col-3" for="gramm_m2' . $gramatur->id . '">Grammtur ' . $gramatur->id . ': </label>';
-              echo '<input class="form-control col-1 text-right" type="text" name="grammatur-' . $gramatur->id . '-gramm_m2" id="grammatur-' . $gramatur->id . '-gramm_m2" value="' . str_replace('.',',',htmlspecialchars($gramatur->gramm_m2)) . '" readonly>';
-              echo '<input class="form-control col-1 text-right" type="text" name="grammatur-' . $gramatur->id . '-preis_blatt" id="grammatur-' . $gramatur->id . '-preis_blatt" value="' . str_replace('.',',',htmlspecialchars($gramatur->preis_blatt)) . '">';
-              echo '<input class="form-control col-1 text-right" type="text" name="grammatur-' . $gramatur->id . '-preis_druckseite" id="grammatur-' . $gramatur->id . '-preis_druckseite' . $gramatur->id . '" value="' . str_replace('.',',',htmlspecialchars($gramatur->preis_druckseite)) . '">';
-              echo '<input class="form-control col-1 text-right" type="text" name="grammatur-' . $gramatur->id . '-maxseiten" id="grammatur-' . $gramatur->id . '-maxseiten' . $gramatur->id . '" value="' . str_replace('.',',',htmlspecialchars($gramatur->maxseiten)) . '">';
-              echo '<input class="form-control col-1 text-right" type="text" name="grammatur-' . $gramatur->id . '-zeitproduktion" id="grammatur-' . $gramatur->id . '-zeitproduktion' . $gramatur->id . '" value="' . str_replace('.',',',htmlspecialchars($gramatur->zeitproduktion)) . '">';
+              echo '<label class="form-label col-12 col-md-2 h5" for="gramm_m2' . $gramatur->id . '">Grammtur ' . $gramatur->id . ': </label>';
+
+              echo '<label class="form-label col-6 d-block d-md-none">g/m²</label>';
+              echo '<input class="form-control col-5 col-md-3 text-right" type="text" name="grammatur-' . $gramatur->id . '-gramm_m2" id="grammatur-' . $gramatur->id . '-gramm_m2" value="' . str_replace('.',',',htmlspecialchars($gramatur->gramm_m2)) . '" readonly>';
+
+              echo '<label class="form-label col-6 d-block d-md-none">Preis pro Blatt &euro;</label>';
+              echo '<input class="form-control col-5 col-md-3 text-right" type="text" name="grammatur-' . $gramatur->id . '-preis_blatt" id="grammatur-' . $gramatur->id . '-preis_blatt" value="' . str_replace('.',',',htmlspecialchars($gramatur->preis_blatt)) . '">';
+
+              echo '<label class="form-label col-6 d-block d-md-none">Preis pro Druckseite &euro;</label>';
+              echo '<input class="form-control col-5 col-md-3 text-right" type="text" name="grammatur-' . $gramatur->id . '-preis_druckseite" id="grammatur-' . $gramatur->id . '-preis_druckseite' . $gramatur->id . '" value="' . str_replace('.',',',htmlspecialchars($gramatur->preis_druckseite)) . '">';
+
+              echo '<label class="form-label col-6 d-block d-md-none">max. Seiten</label>';
+              echo '<input class="form-control col-5 col-md-3 text-right" type="text" name="grammatur-' . $gramatur->id . '-maxseiten" id="grammatur-' . $gramatur->id . '-maxseiten' . $gramatur->id . '" value="' . str_replace('.',',',htmlspecialchars($gramatur->maxseiten)) . '">';
+
+              echo '<label class="form-label col-6 d-block d-md-none">Produktionszeit (Sekunden)</label>';
+              echo '<input class="form-control col-5 col-md-3 text-right" type="text" name="grammatur-' . $gramatur->id . '-zeitproduktion" id="grammatur-' . $gramatur->id . '-zeitproduktion' . $gramatur->id . '" value="' . str_replace('.',',',htmlspecialchars($gramatur->zeitproduktion)) . '">';
               echo '</div>';
             }
             echo '<div class="form-group row">';
-            echo '<label class="form-label col-3" for="produktNeu">Grammtur NEU: </label>';
+            echo '<label class="form-label col-12 col-md-2 h5" for="produktNeu">Grammtur NEU: </label>';
 
-            echo '<input class="form-control col-1 text-right" type="text" name="grammatur-neu-gramm_m2" id="grammatur-neu-gramm_m2" value="';
+            echo '<label class="form-label col-6 d-block d-md-none">g/m²</label>';
+            echo '<input class="form-control col-5 text-right" type="text" name="grammatur-neu-gramm_m2" id="grammatur-neu-gramm_m2" value="';
             if (array_key_exists("grammatur-neu-gramm_m2",$_POST)) {
               echo htmlspecialchars($_POST["grammatur-neu-gramm_m2"]);
             }
             echo '"/>';
 
-            echo '<input class="form-control col-1 text-right" type="text" name="grammatur-neu-preis_blatt" id="grammatur-neu-preis_blatt" value="';
+            echo '<label class="form-label col-6 d-block d-md-none">Preis pro Blatt &euro;</label>';
+            echo '<input class="form-control col-5 text-right" type="text" name="grammatur-neu-preis_blatt" id="grammatur-neu-preis_blatt" value="';
             if (array_key_exists("grammatur-neu-preis_blatt",$_POST)) {
               echo htmlspecialchars($_POST["grammatur-neu-preis_blatt"]);
             }
             echo '"/>';
 
-            echo '<input class="form-control col-1 text-right" type="text" name="grammatur-neu-preis_druckseite" id="grammatur-neu-preis_druckseite" value="';
+            echo '<label class="form-label col-6 d-block d-md-none">Preis pro Druckseite &euro;</label>';
+            echo '<input class="form-control col-5 text-right" type="text" name="grammatur-neu-preis_druckseite" id="grammatur-neu-preis_druckseite" value="';
             if (array_key_exists("grammatur-neu-preis_druckseite",$_POST)) {
               echo htmlspecialchars($_POST["grammatur-neu-preis_druckseite"]);
             }
             echo '"/>';
 
-            echo '<input class="form-control col-1 text-right" type="text" name="grammatur-neu-maxseiten" id="grammatur-neu-maxseiten" value="';
+            echo '<label class="form-label col-6 d-block d-md-none">max. Seiten</label>';
+            echo '<input class="form-control col-5 text-right" type="text" name="grammatur-neu-maxseiten" id="grammatur-neu-maxseiten" value="';
             if (array_key_exists("grammatur-neu-maxseiten",$_POST)) {
               echo htmlspecialchars($_POST["grammatur-neu-maxseiten"]);
             }
             echo '"/>';
 
-            echo '<input class="form-control col-1 text-right" type="text" name="grammatur-neu-zeitproduktion" id="grammatur-neu-zeitproduktion" value="';
+            echo '<label class="form-label col-6 d-block d-md-none">Produktionszeit (Sekunden)</label>';
+            echo '<input class="form-control col-5 text-right" type="text" name="grammatur-neu-zeitproduktion" id="grammatur-neu-zeitproduktion" value="';
             if (array_key_exists("grammatur-neu-zeitproduktion",$_POST)) {
               echo htmlspecialchars($_POST["grammatur-neu-zeitproduktion"]);
             }

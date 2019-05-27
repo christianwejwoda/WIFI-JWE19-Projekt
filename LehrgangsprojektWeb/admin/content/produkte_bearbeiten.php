@@ -24,7 +24,6 @@ if (!empty($_POST)) {
   if (implode("",$input_data[0]) == "") {
     unset($input_data[0]);
   }
-  // echo "<pre>";print_r($input_data);echo "</pre>";echo "<br>";die();
 
   foreach ($input_data as $value) {
     // Validierung
