@@ -34,13 +34,13 @@
           </div>
         </div>
 
-        <div class="row menurow">
-          <div class="col-12 ">
+        <!-- <div class="row menurow">
+          <div class="col-12 "> -->
             <?php
             // Navigation an dieser Stelle einbinden
-            include "content/nav.php"
+            include "nav.php"
             ?>
-          </div>
-        </div>
+          <!-- </div>
+        </div> -->
       </div>
     </div>

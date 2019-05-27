@@ -9,7 +9,8 @@
 .bannerrow {
   background-image: url("../img/pexels-photo-191429_1.jpeg");
   background-size: cover;
-  height: 5em;
+  /* height: 5em; */
+  height: auto;
   justify-content: center;
 }
 h1 {
@@ -62,13 +63,15 @@ h1 {
   text-transform: uppercase;
   align-items: center;
 }
+/* .menurow ul li{
+  padding: 10px;
+} */
 .menurow ul li a {
   height: auto;
   display: block;
   background-color: var(--grey-dark);
   color: white;
   text-decoration: none;
-  padding-right: 25px;
   text-align: left;
   transition: all 0.3s ease;
   font-size: 1em;
@@ -76,9 +79,48 @@ h1 {
 .menurow ul li a:hover {
   color: gray;
 }
+
+.navbar {
+  color: white;
+  background-color: red;
+}
+.navbar-toggler-icon {
+{
+  color: white;
+}
+.navbar a {
+  height: auto;
+  display: block;
+  background-color: var(--grey-dark);
+  color: white;
+  text-decoration: none;
+  text-align: left;
+  transition: all 0.3s ease;
+  font-size: 1em;
+}
+.navbar a:hover {
+  color: gray;
+}
+
+.menurow a {
+  /* height: auto; */
+  /* display: block; */
+  background-color: var(--grey-dark);
+  color: white;
+  text-decoration: none;
+  /* padding-right: 25px; */
+  /* text-align: center; */
+  transition: all 0.3s ease;
+  /* font-size: 1em; */
+}
+.menurow a:hover {
+  color: gray;
+}
+
 .menurow h2 {
   font-size: 1rem;
 }
+
 .menumarked a {
   color: gray !important;
   text-shadow: 1px 2px 0 black !important;
@@ -185,8 +227,16 @@ i {
 }
 /* https://benmarshall.me/styling-file-inputs/ */
 
+@include media-breakpoint-up(md) {
+  .menurow a {
+    font-size: 1.5em;
+  }
+}
 /* // Large devices (desktops, 992px and up) */
 @media (min-width: 576px) {
+  .menurow a {
+    font-size: 1em;
+  }
   .direction {
     /* right */
     transform: rotate(-45deg);
@@ -214,6 +264,9 @@ i {
 
   .menurow {
     height: 6em;
+  }
+  .menurow ul li {
+
   }
   .menurow ul li a {
     font-size: 1.5em;

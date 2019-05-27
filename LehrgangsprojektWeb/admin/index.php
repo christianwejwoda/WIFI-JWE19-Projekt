@@ -16,7 +16,7 @@
  }
 
  $pagetitle = "";
- foreach ($admin_menu_items as $admin_menu_item) {
+ foreach ($menu_items as $admin_menu_item) {
    if ($admin_menu_item["url_part"] == $page) {
      $pagetitle = $admin_menu_item["pagetitle"] . " - " .$companyname;
      $meta_discription = $admin_menu_item["meta_discription"];
