@@ -8,25 +8,8 @@ require_once "../lib/setup.php";
       $error = "Benutzername oder Passwort war leer!";
     } else {
       // Benutzer und Passwort wurden übergeben
-      // -> in der Datenbank nachsehen, ob der Benutzer existiert
-
-      // verbindung zur Datenbank herstellen
-      // $db = mysqli_connect("localhost", "root", "", "printshop");
-      // MySQL mitteilen, dass unsere Befehle als utf8 kommen
-      // mysqli_set_charset($db, "utf8");
-
-      // Daten von Formularen/Benutzer ($_GET oder $_POST)
-      // IMMER !!! mit mysqli_real_escape_string behandeln,
-      // bevor sie in Datenbank-Befehlen verwendet werden.
-      // --> böse Zeichen escapen
-      // $sql_benutzername = mysqli_real_escape_string($db, $_POST["benutzername"]);
       $row = new db_benutzer("benutzername = ?,".$_POST["benutzername"]);
-      // $row=$row->getRow();
       // Datenbank fragen ob der angegebene Benutzer existiert
-      // $result = mysqli_query($db, "SELECT * FROM benutzer WHERE benutzername='{$sql_benutzername}';") or die(mysqli_error($db));
-
-      // Einen Datensatz aus MySQL in ein PHP-Array umwandeln
-      // $row = mysqli_fetch_assoc($result);
       if ($row) {
         // Benutzer existiert -> Passwort prüfen
         if (password_verify($_POST["passwort"],$row->passwort)) {
@@ -34,10 +17,7 @@ require_once "../lib/setup.php";
 
           $row->anzahl_logins++;
           $row->save();
-          // mysqli_query($db, "UPDATE benutzer SET letzter_login = NOW(), anzahl_logins = anzahl_logins + 1 WHERE id = '{$row["id"]}';") or die(mysqli_error($db));
-
           // alles Super --> login merken
-          // session_start();
           $_SESSION["benutzer_id"] = $row->id;
           $_SESSION["benutzer_name"] = $row->benutzername;
           $_SESSION["benutzer_anzeigename"] = $row->anzeigename;

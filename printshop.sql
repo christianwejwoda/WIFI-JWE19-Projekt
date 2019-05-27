@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Erstellungszeit: 17. Mai 2019 um 23:09
+-- Erstellungszeit: 27. Mai 2019 um 22:49
 -- Server-Version: 10.1.38-MariaDB
 -- PHP-Version: 7.3.2
 
@@ -49,21 +49,24 @@ CREATE TABLE `auftraege` (
   `farbe` varchar(7) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `deckblatt_text` text COLLATE utf8mb4_unicode_ci,
   `deckblatt_datei` int(255) UNSIGNED DEFAULT NULL,
-  `inhalt_datei` int(255) UNSIGNED DEFAULT NULL
+  `inhalt_datei` int(255) UNSIGNED DEFAULT NULL,
+  `preis_fix` decimal(10,2) DEFAULT NULL,
+  `geprueft` tinyint(1) NOT NULL DEFAULT '0',
+  `price_per_page` decimal(10,2) DEFAULT NULL,
+  `price_add_randlos_add` decimal(10,2) DEFAULT NULL,
+  `price_add_cover_add` decimal(10,2) DEFAULT NULL,
+  `price_delivery_add` decimal(10,2) DEFAULT NULL,
+  `produktionszeit` decimal(10,2) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
 -- Daten für Tabelle `auftraege`
 --
 
-INSERT INTO `auftraege` (`id`, `session_id`, `produkt_id`, `ein_zwei_seitig`, `grammatur_id`, `randlos`, `seitenzahl`, `einheiten`, `zustelloption_id`, `lieferdatum`, `akzeptiert`, `nachname`, `vorname`, `strasse`, `plz`, `ort`, `email`, `farbe`, `deckblatt_text`, `deckblatt_datei`, `inhalt_datei`) VALUES
-(1, '2cspsd0bjt0c6nujt71tqddtbs', 2, 1, 3, 0, 10, 1, 1, '2019-05-17', NULL, 'Wejwoda', 'Christian', 'Marx-Reichlich-Straße 3/2', '5020', 'Salzburg', 'christian@wejwoda.at', '#e2d74d', 'dddddd', 1, 2),
-(2, '8b1m621qfh2la9c0qr6mjfik2v', 3, 1, 2, 0, 10, 1, 1, '2019-05-10', NULL, 'Wejwoda', 'Christian', 'Marx-Reichlich-Straße 3/2', '5020', 'Salzburg', 'christian@wejwoda.at', '#9c928a', 'jfjfjjf', 3, 4),
-(7, 'n8lk3q7j3jumtmngje0c19m55o', 2, 1, 2, 0, 10, 1, 1, '2019-05-10', 0, 'Wejwoda', 'Christian', 'Marx-Reichlich-Straße 3/2', '5020', 'Salzburg', 'christian@wejwoda.at', '#443d38', 'ffff', 7, 8),
-(8, '3o03fbiihn3h5mhehpu16rk1f0', 2, 1, 2, 0, 10, 1, 1, '2019-05-09', 1, 'Wejwoda', 'Christian', 'Marx-Reichlich-Straße 3/2', '5020', 'Salzburg', 'christian@wejwoda.at', '#faed59', 'dddd', 9, 10),
-(9, '3o03fbiihn3h5mhehpu16rk1f0', 2, 1, 2, 0, 10, 1, 1, '2019-05-09', 1, 'Wejwoda', 'Christian', 'Marx-Reichlich-Straße 3/2', '5020', 'Salzburg', 'christian@wejwoda.at', '#faed59', 'dddd', 9, 10),
-(10, '3o03fbiihn3h5mhehpu16rk1f0', 2, 1, 2, 0, 10, 1, 1, '2019-05-09', 1, 'Wejwoda', 'Christian', 'Marx-Reichlich-Straße 3/2', '5020', 'Salzburg', 'christian@wejwoda.at', '#faed59', 'dddd', 9, 10),
-(11, 'h87bnggqnivf690ti8hq1hvbgi', 2, 2, 2, 0, 100, 13, 1, '2019-05-31', 1, 'Wejwoda', 'Fritz', 'Hierunddortgasse 5', '4820', 'Bad Ischl', 'Christian@wej.at', '#db9065', 'Hhhjhjjjjj', NULL, NULL);
+INSERT INTO `auftraege` (`id`, `session_id`, `produkt_id`, `ein_zwei_seitig`, `grammatur_id`, `randlos`, `seitenzahl`, `einheiten`, `zustelloption_id`, `lieferdatum`, `akzeptiert`, `nachname`, `vorname`, `strasse`, `plz`, `ort`, `email`, `farbe`, `deckblatt_text`, `deckblatt_datei`, `inhalt_datei`, `preis_fix`, `geprueft`, `price_per_page`, `price_add_randlos_add`, `price_add_cover_add`, `price_delivery_add`, `produktionszeit`) VALUES
+(1, '71i47j52jmpe5lvnntta5ofghf', 2, 1, 2, 0, 22, 224, 1, '2019-01-11', 0, 'Wejwoda 1', 'Christian', 'Marx-Reichlich-Straße 3/2', '5020', 'Salzburg', 'christian@wejwoda.at', '#000000', 'sdf asdgf g asd', 47, 48, NULL, 0, '17.60', NULL, NULL, NULL, NULL),
+(2, 'ka9gsabm7utmhtibhvqk69ccbt', 2, 2, 2, 0, 10, 1, 1, '2019-06-22', 0, 'Wejwoda 2', 'Christian', 'Marx-Reichlich-Straße 3/2', '5020', 'Salzburg', 'christian@wejwoda.at', '#000000', 'sdf asdgf g asd', 49, 50, '90.00', 1, '7.00', '0.00', '15.00', '14.00', '8.00'),
+(3, 's9m5spado8bj1hs60fu0eri3nm', 4, 2, 3, 0, 50, 30, 1, '2019-06-30', 0, 'Wejwoda 3', 'Christian', 'Marx-Reichlich-Straße 3/2', '5020', 'Salzburg', 'cherry30@gmx.at', '#000000', '', NULL, 51, '200.50', 1, '125.00', '6.25', '8.00', '14.00', '9.00');
 
 -- --------------------------------------------------------
 
@@ -86,7 +89,8 @@ CREATE TABLE `benutzer` (
 --
 
 INSERT INTO `benutzer` (`id`, `anzeigename`, `benutzername`, `email`, `passwort`, `letzter_login`, `anzahl_logins`) VALUES
-(1, 'Wejwoda Christian', 'wechri', 'christian@wejwoda.at', '$2y$10$.vnSlrxiRPNHu.g7nap6i.MbgCJ76029LB7pFvT8pkhsJ0iFckjHm', '2019-04-27 14:35:25', 17);
+(1, 'Wejwoda Christian', 'wechri', 'christian@wejwoda.at', '$2y$10$dmMsGuQain/LHW8pWqEeleU2sD76xD0tLeuYtigY84f6z6WTCjMa2', '2019-05-20 23:51:51', 34),
+(2, 'Trainer', 'jwe', 'jwe@wifi.at', '$2y$10$bq0w1eoJlwBS6S6OhA4.c.phjPzxQ/RGUMSOqPjoFwPt8w4SYP39W', NULL, 2);
 
 -- --------------------------------------------------------
 
@@ -167,7 +171,46 @@ INSERT INTO `uploaddateien` (`id`, `session_id`, `upload_dateiname`, `org_datein
 (9, '3o03fbiihn3h5mhehpu16rk1f0', '156279c09292b5684ed8acf40bc7fe25.pdf', 'Scan0010.pdf'),
 (10, '3o03fbiihn3h5mhehpu16rk1f0', '0ec8d02fe5daa6f325b279cf4049c9c7.pdf', 'Scan0009.pdf'),
 (11, '67npaes4j28m2j9rj78c5kajm6', '3deabc626b4ad7ce29f671858b57a5c9.pdf', 'Scan0009.pdf'),
-(12, '67npaes4j28m2j9rj78c5kajm6', '4d904d09474b8ebbd43aedb136f83cc7.pdf', '89-18_Zahlungsbestätigung.pdf');
+(12, '67npaes4j28m2j9rj78c5kajm6', '4d904d09474b8ebbd43aedb136f83cc7.pdf', '89-18_Zahlungsbestätigung.pdf'),
+(13, 'knmqiflnc86i2upehovkmms9ma', '03b8ba6b69f47b795aabba835e501cfe.pdf', '20180911_Überweisungbestätigung.pdf'),
+(14, 'knmqiflnc86i2upehovkmms9ma', 'd63948c0afbbfcbfd700222bbe9ce869.pdf', 'Daten_Unfall_Autobahn_Wohnwagendeckel.pdf'),
+(15, '65c1fs1s690niu3vh7r4ntioab', '768b9b172decc31103a93c8d000f2844.pdf', 'Scan0003.pdf'),
+(16, '8aral8bhiq96n023ie97rjofeg', '37149c3a825b9f6969f644846f9b354e.pdf', 'Scan0004.pdf'),
+(17, '8aral8bhiq96n023ie97rjofeg', 'ac202ab55cddbcf83056d113dbcf8427.pdf', 'Scan0006.pdf'),
+(18, 'i983r5pvdh86qv9lnvgcmf5vu0', 'a58443c7a6ec2557c3b779f02b10f346.pdf', 'Projekt-JWE-2018-2019-WIFI-Salzburg.pdf'),
+(19, 'i983r5pvdh86qv9lnvgcmf5vu0', '62ff4632fd5781dca481061d61ab8e90.pdf', 'Projekt-JWE-2018-2019-WIFI-Salzburg.pdf'),
+(20, 'i983r5pvdh86qv9lnvgcmf5vu0', '00b01c1f79d788eaf0815a85562293d4.pdf', 'Projekt-JWE-2018-2019-WIFI-Salzburg.pdf'),
+(21, 'i983r5pvdh86qv9lnvgcmf5vu0', 'c6cc87b94b3fdbdd3551f171b1dbea6a.pdf', 'Projekt-JWE-2018-2019-WIFI-Salzburg.pdf'),
+(22, 'i983r5pvdh86qv9lnvgcmf5vu0', '6e86da1b563eb704abda314dcfe768d1.pdf', 'Projekt-JWE-2018-2019-WIFI-Salzburg.pdf'),
+(23, '90en2mn1h0lr93qb06vho878vt', 'd971d09ad7f1c1591cd03316c218eefe.pdf', 'Projekt-JWE-2018-2019-WIFI-Salzburg.pdf'),
+(24, '90en2mn1h0lr93qb06vho878vt', 'a7c382b174183d5e5fb432ea75a109d7.pdf', 'Projekt-JWE-2018-2019-WIFI-Salzburg.pdf'),
+(25, 'hom8ore60spu46ual9ui85kab4', '21392291ba920c9c81ba7c09a1a75914.pdf', 'Projekt-JWE-2018-2019-WIFI-Salzburg.pdf'),
+(26, 'hom8ore60spu46ual9ui85kab4', '9f90d5af3aaf026091864e0732a12540.pdf', 'Projekt-JWE-2018-2019-WIFI-Salzburg.pdf'),
+(27, 'hom8ore60spu46ual9ui85kab4', '6da39a34c411044c9c48190e278eb734.pdf', 'Projekt-JWE-2018-2019-WIFI-Salzburg.pdf'),
+(28, 'hom8ore60spu46ual9ui85kab4', 'c50c2d7702d55bc2bd0126cc5b78f75c.pdf', 'Projekt-JWE-2018-2019-WIFI-Salzburg.pdf'),
+(29, 'hom8ore60spu46ual9ui85kab4', '4f1c7e3d5c4e9a40624bcd48c4924c33.pdf', 'Projekt-JWE-2018-2019-WIFI-Salzburg.pdf'),
+(30, 'hom8ore60spu46ual9ui85kab4', '72ccfeb9b454647a96881af41af8246b.pdf', 'Projekt-JWE-2018-2019-WIFI-Salzburg.pdf'),
+(31, 'hom8ore60spu46ual9ui85kab4', '34e15178481e525aaa9c4198ca317f5f.pdf', 'Projekt-JWE-2018-2019-WIFI-Salzburg.pdf'),
+(32, 'hom8ore60spu46ual9ui85kab4', '243c94c9fd459f1ff8261020678cf248.pdf', 'Projekt-JWE-2018-2019-WIFI-Salzburg.pdf'),
+(33, 'qb7jp7hr5ujhc2hbvic2jpp784', '4a1188a17a32c7b6e4a66b87c9fa2e36.pdf', 'Projekt-JWE-2018-2019-WIFI-Salzburg.pdf'),
+(34, 'qb7jp7hr5ujhc2hbvic2jpp784', '7e29e7a25e2378e5c62d57d77c536769.pdf', 'Projekt-JWE-2018-2019-WIFI-Salzburg.pdf'),
+(35, 'p79pn6mq6bdd4m6afpsg93lcp9', '6b315105545845976d05faefef539619.pdf', 'Projekt-JWE-2018-2019-WIFI-Salzburg.pdf'),
+(36, 'p79pn6mq6bdd4m6afpsg93lcp9', '879d546c75706293970c57569de96301.pdf', 'Projekt-JWE-2018-2019-WIFI-Salzburg.pdf'),
+(37, 'p79pn6mq6bdd4m6afpsg93lcp9', '1db71e4e7a1ca9628169632168ce3ab5.pdf', 'Projekt-JWE-2018-2019-WIFI-Salzburg.pdf'),
+(38, 'p79pn6mq6bdd4m6afpsg93lcp9', 'b1c45220d0ef1c4413127ef62c1933c4.pdf', 'Projekt-JWE-2018-2019-WIFI-Salzburg.pdf'),
+(39, 'p79pn6mq6bdd4m6afpsg93lcp9', '22498ca73e8fd4b7b45b07f4108bbe25.pdf', 'Projekt-JWE-2018-2019-WIFI-Salzburg.pdf'),
+(40, 'p79pn6mq6bdd4m6afpsg93lcp9', '5fcc2f0f137040d94c96fb964d5bfd48.pdf', 'Projekt-JWE-2018-2019-WIFI-Salzburg.pdf'),
+(41, 'p79pn6mq6bdd4m6afpsg93lcp9', 'e6ca63f68227827f0b5d26f9c8196996.pdf', 'Projekt-JWE-2018-2019-WIFI-Salzburg.pdf'),
+(42, 'p79pn6mq6bdd4m6afpsg93lcp9', 'bbdcdfab2b13689d7db8abab96fc1013.pdf', 'Projekt-JWE-2018-2019-WIFI-Salzburg.pdf'),
+(43, 'p79pn6mq6bdd4m6afpsg93lcp9', '492cc7eff7377598a823f05b525eb5d8.pdf', 'Projekt-JWE-2018-2019-WIFI-Salzburg.pdf'),
+(44, '6qc0r49h4ct5qj439iunqlue06', 'd1e07b3ed96d391987389d049ef87067.pdf', '90-18_a.pdf'),
+(45, '6qc0r49h4ct5qj439iunqlue06', '2cd9c4419abbe2a5d97108da0a953015.pdf', 'Scan0007.pdf'),
+(46, '6qc0r49h4ct5qj439iunqlue06', 'f83b3f5a420289dac6895141e2d28073.pdf', '20180911_Überweisungbestätigung.pdf'),
+(47, '71i47j52jmpe5lvnntta5ofghf', 'b1a4420dc3631fa1276e53a620ec9042.pdf', 'Scan0005.pdf'),
+(48, '71i47j52jmpe5lvnntta5ofghf', '66ccb316e420d63af1ad43ec073feb8e.pdf', 'Scan0004.pdf'),
+(49, 'ka9gsabm7utmhtibhvqk69ccbt', '758fde4f1d9e3e3258022e94514e8a66.pdf', 'Scan0003.pdf'),
+(50, 'ka9gsabm7utmhtibhvqk69ccbt', 'dcf9157764ec8ab65b50e2f162444b26.pdf', '20180911_Verordnung.pdf'),
+(51, 's9m5spado8bj1hs60fu0eri3nm', '70c45c533fb373b91c290801f02d8915.pdf', 'Scan0004.pdf');
 
 -- --------------------------------------------------------
 
@@ -186,7 +229,7 @@ CREATE TABLE `zustelloptionen` (
 --
 
 INSERT INTO `zustelloptionen` (`id`, `titel`, `preis`) VALUES
-(1, 'Versandkostenpauschale', '14'),
+(1, 'Versand', '14'),
 (2, 'Abholung', '0');
 
 --
@@ -242,13 +285,13 @@ ALTER TABLE `zustelloptionen`
 -- AUTO_INCREMENT für Tabelle `auftraege`
 --
 ALTER TABLE `auftraege`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT für Tabelle `benutzer`
 --
 ALTER TABLE `benutzer`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT für Tabelle `gramaturen`
@@ -266,7 +309,7 @@ ALTER TABLE `produkte`
 -- AUTO_INCREMENT für Tabelle `uploaddateien`
 --
 ALTER TABLE `uploaddateien`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=52;
 
 --
 -- AUTO_INCREMENT für Tabelle `zustelloptionen`

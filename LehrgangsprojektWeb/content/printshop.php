@@ -2,7 +2,6 @@
 require_once "lib/setup.php";
 ?>
 
-<!-- <div class="container-fluid"> -->
 <div class="container maxWidth">
   <form class="masterForm wrapper" id="printshop_form" action="<?php echo basename(__FILE__, '.php'); ?>" method="post">
     <input type="text" name="session_id" id="session_id" value="<?php echo session_id(); ?>" hidden>
@@ -31,14 +30,16 @@ require_once "lib/setup.php";
     <!-- Ein‐/Beidseitiger Druck -->
     <div class="form-group row">
       <div class="col-12 col-lg-4 col-form-label">Seitenoption</div>
-        <label class="col-3 col-lg-2 radio_format col-form-label" for="ein_zwei_seitig1">
+      <label class="col-3 col-lg-2 radio_format col-form-label" for="ein_zwei_seitig1">
         <input id="ein_zwei_seitig1" type="radio" name="ein_zwei_seitig" value="1" <?php if (!empty($posted) && $posted["ein_zwei_seitig"] == 1) {
           echo " selected ";
-        } ?> /> einseitig</label>
-        <label class="col-3 col-lg-2 radio_format col-form-label" for="ein_zwei_seitig2">
+        } ?> /> einseitig
+      </label>
+      <label class="col-3 col-lg-2 radio_format col-form-label" for="ein_zwei_seitig2">
         <input id="ein_zwei_seitig2" type="radio" name="ein_zwei_seitig" value="2" <?php if (!empty($posted) && $posted["ein_zwei_seitig"] == 2) {
           echo " selected ";
-        } ?>/> beiseitig</label>
+        } ?>/> beiseitig
+      </label>
 
       <span class="col-lg-4"></span>
 
@@ -49,11 +50,10 @@ require_once "lib/setup.php";
     <!-- Papier‐Grammatur (Gewicht: 100 ‐ 160g/m²) -->
     <div class="form-group row">
       <div class="col-12 col-lg-4 col-form-label">Papier‐Grammatur (g/m²)</div>
-      <div class="col-12 col-lg-8 radio_format">
       <?php
       $gramaturen = new db_gramaturen();
       foreach ($gramaturen->get() as $gramatur) {
-          echo '<label class="col-2 col-lg-2 radio_format col-form-label" for="pg' . $gramatur->id . '">';
+          echo '<label class="col-2 col-lg-1 radio_format col-form-label" for="pg' . $gramatur->id . '">';
           echo '<input id="pg' . $gramatur->id . '" type="radio" name="grammatur_id" value="' . $gramatur->id . '" maxseiten="' . $gramatur->maxseiten . '"';
           if (!empty($posted) && $posted["grammatur_id"] == $gramatur->id) {
             echo " selected ";
@@ -61,7 +61,6 @@ require_once "lib/setup.php";
           echo '/> ' . $gramatur->gramm_m2 . '</label>';
         }
        ?>
-       </div>
 
        <span class="col-12 col-lg-4 "></span>
        <span class="col-12 col-lg-8 error_message" id="grammatur_id_error"></span>
@@ -70,12 +69,11 @@ require_once "lib/setup.php";
     <!-- Randloser Druck -->
     <div class="form-group row flex-lg-row flex-row-reverse">
       <label class="col-11 col-lg-4 form-check-label" for="randlos">Randloser Druck</label>
-      <div class="radio_format">
+      <!-- <div class="radio_format"> -->
         <div class="form-check">
-          <!-- col-lg-1 col-sm-1  -->
           <input class="form-check-input" type="checkbox" name="randlos" id="randlos" autocomplete="off">
         </div>
-      </div>
+      <!-- </div> -->
     </div>
 
     <!-- Seitenanzahl -->
@@ -103,18 +101,18 @@ require_once "lib/setup.php";
     <!-- Zustelltyp -->
     <div class="form-group row">
       <div class="col-12 col-lg-4  col-form-label">Zustelltyp</div>
-      <div class="col-12 col-lg-8 radio_format">
+      <!-- <div class="col-12 col-lg-8 radio_format"> -->
       <?php
       $zustelloptionen = new db_zustelloptionen();
       foreach ($zustelloptionen->get() as $zustelloption) {
-          echo "<span class='col-12 col-lg-4 '>";
+          echo "<span class='col-12 col-lg-2 '>";
           echo '<label class="radio_format col-form-label" for="pg' . $zustelloption->id . '">';
           echo '<input id="pg' . $zustelloption->id . '" type="radio" name="zustelloption_id" value="' . $zustelloption->id . '" ';
           echo '/> ' . $zustelloption->titel . '</label>';
           echo"</span>";
         }
        ?>
-       </div>
+       <!-- </div> -->
 
        <span class="col-12 col-lg-4 "></span>
        <span class="col-12 col-lg-8 error_message" id="zustelloption_id_error"></span>
