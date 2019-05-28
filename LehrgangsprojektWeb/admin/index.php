@@ -18,7 +18,10 @@
  $pagetitle = "";
  foreach ($menu_items as $admin_menu_item) {
    if ($admin_menu_item["url_part"] == $page) {
-     $pagetitle = $admin_menu_item["pagetitle"] . " - " .$companyname;
+     if (!empty($admin_menu_item["pagetitle"])) {
+       $pagetitle .= $admin_menu_item["pagetitle"] . " - " ;
+     }
+     $pagetitle .= $companyname;
      $meta_discription = $admin_menu_item["meta_discription"];
      $include_file = $admin_menu_item["include_file"];
      if ($admin_menu_item["redirect"] == true) {

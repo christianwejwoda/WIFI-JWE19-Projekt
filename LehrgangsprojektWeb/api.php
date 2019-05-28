@@ -38,6 +38,10 @@ switch ($parameter[0]) {
       $auftrag->preis_fix = $_POST["preis_fix"];
       $auftrag->geprueft = $_POST["geprueft"];
       $auftrag->save();
+
+      $m = new lib_mailsender($auftrag->getRow());
+      $m->send(1);
+
       $ausgabe["status"] = 1;
     }
     echo json_encode($ausgabe);
@@ -89,10 +93,10 @@ switch ($parameter[0]) {
     );
     if (empty($parameter[1])) {
       $result = new db_auftraege();
-      $ausgabe["result"][] =$result->getRows();
+      $ausgabe["result"] =$result->getRows();
     } else {
       $result = new db_auftrag((int)$parameter[1]);
-      $ausgabe["result"][] = $result->getRow();
+      $ausgabe["result"] = $result->getRow();
     }
     echo json_encode($ausgabe);
     exit;
@@ -106,10 +110,10 @@ switch ($parameter[0]) {
     );
     if (empty($parameter[1])) {
       $result = new db_produkte();
-      $ausgabe["result"][] =$result->getRows();
+      $ausgabe["result"] =$result->getRows();
     } else {
       $result = new db_produkt((int)$parameter[1]);
-      $ausgabe["result"][] = $result->getRow();
+      $ausgabe["result"] = $result->getRow();
     }
     echo json_encode($ausgabe);
     exit;
@@ -123,10 +127,10 @@ switch ($parameter[0]) {
     );
     if (empty($parameter[1])) {
       $result = new db_gramaturen();
-      $ausgabe["result"][] =$result->getRows();
+      $ausgabe["result"] =$result->getRows();
     } else {
       $result = new db_gramatur((int)$parameter[1]);
-      $ausgabe["result"][] = $result->getRow();
+      $ausgabe["result"] = $result->getRow();
     }
     echo json_encode($ausgabe);
     exit;
@@ -140,10 +144,10 @@ switch ($parameter[0]) {
     );
     if (empty($parameter[1])) {
       $result = new db_zustelloptionen();
-      $ausgabe["result"][] =$result->getRows();
+      $ausgabe["result"] =$result->getRows();
     } else {
       $result = new db_zustelloption((int)$parameter[1]);
-      $ausgabe["result"][] = $result->getRow();
+      $ausgabe["result"] = $result->getRow();
     }
     echo json_encode($ausgabe);
     exit;

@@ -47,7 +47,8 @@ class db_calculation
     $ein_zwei_seitig = (int)$this->_values["ein_zwei_seitig"];
     $seitenzahl = (int)$this->_values["seitenzahl"];
 
-    $preis += ($this->_gramatur->preis_blatt * $seitenzahl / $ein_zwei_seitig + $this->_gramatur->preis_druckseite * (int)$this->_values["seitenzahl"]);
+    $preis += $this->_gramatur->preis_blatt * $seitenzahl / $ein_zwei_seitig;
+    $preis += $this->_gramatur->preis_druckseite * $seitenzahl;
     $this->_answers["preis1"] = $preis;
 
     // randlos ==> druckpreis + 5%

@@ -86,10 +86,12 @@ if (!empty($_POST)) {
               echo '<input class="form-control col-7 col-md-1" type="text" name="benutzer_' . $benutzer->id . '_passwort" id="benutzer_' . $benutzer->id . '_passwort" value="">';
 
               echo '<label class="form-label col-4 d-block d-md-none">letzer Login</label>';
-              echo '<input class="form-control col-7 col-md-2" type="text" name="benutzer_' . $benutzer->id . '_letzterlogin" id="benutzer_' . $benutzer->id . '_letzterlogin" value="' . htmlspecialchars($benutzer->letzter_login) . '">';
+              echo '<input class="form-control col-7 col-md-2" type="text" value="' . htmlspecialchars($benutzer->letzter_login) . '">';
+              // name="benutzer_' . $benutzer->id . '_letzterlogin" id="benutzer_' . $benutzer->id . '_letzterlogin"
 
               echo '<label class="form-label col-4 d-block d-md-none">Anzahl Logins</label>';
-              echo '<input class="form-control col-7 col-md-1" type="text" name="benutzer_' . $benutzer->id . '_anzahllogins" id="benutzer_' . $benutzer->id . '_passwort" value="' . htmlspecialchars($benutzer->anzahl_logins) . '">';
+              echo '<input class="form-control col-7 col-md-1" type="text" value="' . htmlspecialchars($benutzer->anzahl_logins) . '">';
+              // name="benutzer_' . $benutzer->id . '_anzahllogins" id="benutzer_' . $benutzer->id . '_passwort"
 
               echo '</div>';
             }?>
@@ -106,37 +108,29 @@ if (!empty($_POST)) {
               <label class="form-label col-12 col-md-2 h5" for="benutzer_neu_anzeigename">Benutzer NEU: </label>
 
               <label class="form-label col-4 d-block d-md-none">Anzeigename</label>
-              <input class="form-control col-7 col-md-2" type="text" name="benutzer_neu_anzeigename" id="benutzer_neu_anzeigename" value="
-              <?php
+              <input class="form-control col-7 col-md-2" type="text" name="benutzer_neu_anzeigename" id="benutzer_neu_anzeigename" value="<?php
                 if (array_key_exists("benutzer_neu_anzeigename",$_POST)) {
                   echo htmlspecialchars($_POST["benutzer_neu_anzeigename"]);
                 }
-              ?>
-              "/>
+              ?>"/>
 
               <label class="form-label col-4 d-block d-md-none">Benutzername</label>
-              <input class="form-control col-7 col-md-2" type="text" name="benutzer_neu_benutzername" id="benutzer_neu_benutzername" value="
-              <?php
+              <input class="form-control col-7 col-md-2" type="text" name="benutzer_neu_benutzername" id="benutzer_neu_benutzername" value="<?php
               if (array_key_exists("benutzer_neu_benutzername",$_POST)) {
                 echo htmlspecialchars($_POST["benutzer_neu_benutzername"]);
-              } ?>
-              "/>
+              } ?>"/>
 
               <label class="form-label col-4 d-block d-md-none">E-Mail</label>
-              <input class="form-control col-7 col-md-2" type="text" name="benutzer_neu_email" id="benutzer_neu_email" value="
-              <?php
+              <input class="form-control col-7 col-md-2" type="text" name="benutzer_neu_email" id="benutzer_neu_email" value="<?php
               if (array_key_exists("benutzer_neu_email",$_POST)) {
                 echo htmlspecialchars($_POST["benutzer_neu_email"]);
-              } ?>
-              "/>
+              } ?>"/>
 
               <label class="form-label col-4 d-block d-md-none">neues Passwort</label>
-              <input class="form-control col-7 col-md-2" type="text" name="benutzer_neu_passwort" id="benutzer_neu_passwort" value="
-              <?php
+              <input class="form-control col-7 col-md-2" type="text" name="benutzer_neu_passwort" id="benutzer_neu_passwort" value="<?php
               if (array_key_exists("benutzer_neu_passwort",$_POST)) {
                 echo htmlspecialchars($_POST["benutzer_neu_passwort"]);
-              } ?>
-              "/>
+              } ?>"/>
             </div>
             <?php
             if (!$validieren->alles_ok()) {
@@ -144,6 +138,6 @@ if (!empty($_POST)) {
             }
            ?>
           <div>
-            <button class="btn-send" type="submit" >speichern</button>
+            <button class="btn-send btn-primary" type="submit" >speichern</button>
           </div>
         </form>

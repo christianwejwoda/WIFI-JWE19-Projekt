@@ -41,8 +41,12 @@ require_once "../lib/setup.php";
   <head>
     <meta charset="utf-8">
 
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+
     <link rel="stylesheet" href ="../css/style.css">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
     <title>Loginbereich - <?php echo $companyname; ?></title>
   </head>
 
@@ -56,10 +60,8 @@ require_once "../lib/setup.php";
      ?>
      <div class="menurow">
      </div>
-     <h2>Loginbereich zum Administrations-Bereich</h2>
-    <form class="container-fluid" action="login.php" method="post">
-      <div class="form-group row">
-      </div>
+    <form class="container" action="login.php" method="post">
+      <h2>Loginbereich zum Administrations-Bereich</h2>
       <div class="form-group row">
         <label class="col-12 col-lg-3" for="benutzername">Benutzername:</label>
         <input class="col-12 col-lg-3" type="text" name="benutzername" id="benutzername" value="" />
@@ -71,9 +73,15 @@ require_once "../lib/setup.php";
       </div>
 
       <div class="form-group row">
-        <div class="col-lg-1"></div>
-        <button class="col-12 col-lg-4" type="submit">einloggen</button>
-        <div class="col-lg-1"></div>
+        <button class="col-12 col-lg-6 btn btn-primary" type="submit">einloggen</button>
+      </div>
+      <div class="row">
+        <!-- <a class="col-12 col-lg-3" href="../home">zurück</a> -->
+        <a class="col-12 col-lg-6 text-center" href="../home">
+          <!-- <button  type="button"> -->
+            zurück zur Hauptseite
+          <!-- </button> -->
+        </a>
       </div>
 
     </form>

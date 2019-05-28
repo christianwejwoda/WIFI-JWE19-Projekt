@@ -29,7 +29,8 @@ $modus = 0;
   }
 ?>
 
-  <nav class="navbar navbar-expand-lg navbar-dark">
+  <nav class="navbar navbar-expand-lg navbar-dark bg-info">
+    <div class="container">
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContentDetail" aria-controls="navbarSupportedContentDetail" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
       geprüfte ?
@@ -39,16 +40,37 @@ $modus = 0;
       <ul class="navbar-nav mr-auto">
         <?php
           echo '<li class="nav-item">';
-          echo '<a class="nav-link" href="'.basename(__FILE__, '.php').'?modus=0">alle Anfragen</a>';
+          echo '<a class="nav-link ';
+          if ($modus == 0) {
+             echo " nav-item-active";
+          } else {
+            echo " text-white";
+          }
+          echo '" href="'.basename(__FILE__, '.php').'?modus=0">alle Anfragen</a>';
           echo '</li>';
+
           echo '<li class="nav-item">';
-          echo '<a class="nav-link" href="'.basename(__FILE__, '.php').'?modus=1">nur geprüfte Anfragen</a>';
+          echo '<a class="nav-link ';
+          if ($modus == 1) {
+             echo " nav-item-active";
+          } else {
+            echo " text-white";
+          }
+          echo '" href="'.basename(__FILE__, '.php').'?modus=1">nur geprüfte Anfragen</a>';
           echo '</li>';
+
           echo '<li class="nav-item">';
-          echo '<a class="nav-link" href="'.basename(__FILE__, '.php').'?modus=2">nur ungeprüfte Anfragen</a>';
+          echo '<a class="nav-link ';
+          if ($modus == 2) {
+             echo " nav-item-active";
+          } else {
+            echo " text-white";
+          }
+          echo '" href="'.basename(__FILE__, '.php').'?modus=2">nur ungeprüfte Anfragen</a>';
           echo '</li>';
         ?>
       </ul>
+    </div>
     </div>
   </nav>
 
@@ -61,7 +83,7 @@ $modus = 0;
           <div class="card">
             <div class="card-header" id="heading<?php echo $auftraeg->id; ?>">
               <h5 class="mb-0">
-                <button class="btn btn-link " type="button" data-toggle="collapse" data-target="#collapse<?php echo $auftraeg->id; ?>" aria-expanded="true" aria-controls="collapse<?php echo $auftraeg->id; ?>">
+                <button class="btn btn-secondary " type="button" data-toggle="collapse" data-target="#collapse<?php echo $auftraeg->id; ?>" aria-expanded="true" aria-controls="collapse<?php echo $auftraeg->id; ?>">
                   <?php echo $auftraeg->nachname.' '.$auftraeg->vorname.'(' . $auftraeg->id . ')'; ?>
                 </button>
               </h5>
@@ -118,7 +140,7 @@ $modus = 0;
                   </div>
 
                   <div class="row">
-                    <div class="col-12 col-lg-3 border">Produkt:</div>
+                    <div class="col-12 col-lg-3 border">Seitenoption:</div>
                     <div class="col-12 col-lg-9 border"><?php
                       if($auftraeg->ein_zwei_seitig == 1) {
                         echo "einseitig";
@@ -149,9 +171,7 @@ $modus = 0;
 
                   <div class="row">
                     <div class="col-12 col-lg-3 border">Seitenzahl:</div>
-                    <div class="col-12 col-lg-9 border"><?php
-                      echo $auftraeg->seitenzahl;
-                     ?></div>
+                    <div class="col-12 col-lg-9 border"><?php echo $auftraeg->seitenzahl; ?></div>
                   </div>
 
                   <div class="row">
@@ -214,7 +234,11 @@ $modus = 0;
                   <p class='h3'>Angebot</p>
                   <p>alle Preise in €</p>
                   <div class='row'>
-                    <span class='col-12 col-sm-5 col-lg-5 border'>Preis pro Seite:</span>
+                    <span class='col-12 col-sm-5 col-lg-5 border'>Druckkosten für <?php echo $auftraeg->seitenzahl; ?> Seiten<?php 
+                    if($auftraeg->ein_zwei_seitig == 2) {
+                      echo " auf " . $auftraeg->seitenzahl / 2 . " Blättern";
+                    }
+                     ?>:</span>
                     <span class='col-sm-3 col-lg-2'></span>
                     <span class='col-sm-1 col-lg-1'></span>
                     <span class='col-12 col-sm-3 col-lg-2 text-right border'><?php $preisSum = $auftraeg->price_per_page; echo number_format($auftraeg->price_per_page,2,',',''); ?></span>
@@ -284,7 +308,7 @@ $modus = 0;
                     if ($auftraeg->geprueft == 0) {
                       ?>
                       <div>
-                        <button type="submit" >speichern</button>
+                        <button class="btn-primary" type="submit" >speichern</button>
                       </div>
                       <?php
                     }

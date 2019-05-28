@@ -10,7 +10,10 @@ if ( empty($_GET["page"]) ) {
 $pagetitle = "";
 foreach ($menu_items as $menu_item) {
   if ($menu_item["url_part"] == $page) {
-    $pagetitle = $menu_item["pagetitle"] . " - " .$companyname;
+    if (!empty($menu_item["pagetitle"])) {
+      $pagetitle .= $menu_item["pagetitle"] . " - " ;
+    }
+    $pagetitle .= $companyname;
     $meta_discription = $menu_item["meta_discription"];
     $include_file = $menu_item["include_file"];
   }

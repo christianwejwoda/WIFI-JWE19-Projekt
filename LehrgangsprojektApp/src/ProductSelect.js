@@ -133,7 +133,7 @@ class ProductSelect extends Component {
     })
     .done((res) =>
       {
-        this.setState({products: res.result[0]});
+        this.setState({products: res.result});
       }
     )
     .fail((xhr, status, errorThrown) => {
@@ -151,7 +151,7 @@ class ProductSelect extends Component {
     })
     .done((res) =>
       {
-        this.setState({paperweights: res.result[0]});
+        this.setState({paperweights: res.result});
       }
     )
     .fail((xhr, status, errorThrown) => {
@@ -169,7 +169,7 @@ class ProductSelect extends Component {
     })
     .done((res) =>
       {
-        this.setState({deliveryoptions: res.result[0]});
+        this.setState({deliveryoptions: res.result});
       }
     )
     .fail((xhr, status, errorThrown) => {

@@ -19,7 +19,6 @@ import TableRow from '@material-ui/core/TableRow';
 import Send from '@material-ui/icons/Send';
 import Typography from '@material-ui/core/Typography';
 import Checkbox from '@material-ui/core/Checkbox';
-
 import Button from '@material-ui/core/Button';
 
 import Auftraege from './Auftraege';
@@ -87,7 +86,7 @@ class AdminAnfragen extends Component {
                         "deckblatt_text":"",
                         "deckblatt_datei":0,
                         "inhalt_datei":0,
-                        "preis_fix":"",
+                        "preis_fix":0,
                         "calc":{
                                 "errors":[],"preis1":30,"preis3add":"15.00","preis3":45,"preis4":45,"price_delivery_label":"Versand","preis5":59,"preis5add":"14","einheiten":1,"deckblattfarbauswahl":1,"deckblatttexteingabe":1,"maxseiten":150,"produktionszeit":8
                               }
@@ -122,7 +121,7 @@ class AdminAnfragen extends Component {
     })
     .done((res) =>
       {
-        this.setState({auftraege: res.result[0]});
+        this.setState({auftraege: res.result});
       }
     )
     .fail((xhr, status, errorThrown) => {
@@ -217,7 +216,7 @@ class AdminAnfragen extends Component {
     })
     .done((res) =>
       {
-        this.setState({products: res.result[0]});
+        this.setState({products: res.result});
       }
     )
     .fail((xhr, status, errorThrown) => {
@@ -235,7 +234,7 @@ class AdminAnfragen extends Component {
     })
     .done((res) =>
       {
-        this.setState({paperweights: res.result[0]});
+        this.setState({paperweights: res.result});
       }
     )
     .fail((xhr, status, errorThrown) => {
@@ -253,7 +252,7 @@ class AdminAnfragen extends Component {
     })
     .done((res) =>
       {
-        this.setState({deliveryoptions: res.result[0]});
+        this.setState({deliveryoptions: res.result});
       }
     )
     .fail((xhr, status, errorThrown) => {
@@ -287,7 +286,7 @@ class AdminAnfragen extends Component {
               this.setAuftragCalc(event.target.value);
               this.setState({
                 selectedAuftrag: selAuftrag,
-                preis_fix: selAuftrag["preis_fix"],
+                preis_fix: selAuftrag["preis_fix"] || this.state.priceShipping,
                 geprueft: selAuftrag["geprueft"],
                 editorHidden: false,
               });
@@ -340,7 +339,7 @@ class AdminAnfragen extends Component {
 
         <Grid item >
           <Paper hidden={this.state.editorHidden}>
-            <div readonly>
+            <div readOnly>
 
             <Grid container className={classes.root} spacing={8} direction="column" justify="center" alignItems="stretch">
             <Grid item >
@@ -393,7 +392,7 @@ class AdminAnfragen extends Component {
 
             <Grid item>
               <FormLabel component="legend">randloser Druck</FormLabel>
-              <Switch name="borderless" onChange={this.handleChange} checked={(this.state.selectedAuftrag["randlos"] ===0 ? false : true) }/>
+              <Switch name="borderless" onChange={this.handleChange} value={ (this.state.selectedAuftrag["randlos"] ===0 ? false : true) }/>
             </Grid>
 
             <Grid item>
@@ -472,7 +471,7 @@ class AdminAnfragen extends Component {
 
           <Grid item>
             <Grid item >
-              <FormControlLabel control={<Checkbox checked={this.state.geprueft} name="geprueft" onChange={this.handleChange} />} label="Angebot geprüft"/>
+              <FormControlLabel control={<Checkbox value={this.state.geprueft ? "on":""} name="geprueft" onChange={this.handleChange} />} label="Angebot geprüft"/>
             </Grid>
           </Grid>
 

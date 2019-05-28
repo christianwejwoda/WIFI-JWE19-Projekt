@@ -64,7 +64,6 @@ $('#btn-send').click(function() {
             if (msg)
             {
               $('#printshop_form').submit();
-              // $('#btn-send').html(msg);
             } else
             {
               alert("msg empty");
@@ -74,9 +73,6 @@ $('#btn-send').click(function() {
           $('#btn-send').html(msg.responseText);
         }
     });
-
-    // https://stackoverflow.com/questions/4227043/how-do-i-cancel-form-submission-in-submit-button-onclick-event
-
   }
 
 });
@@ -143,6 +139,11 @@ function check_all()
                      $('#price_delivery_add_form').val(p5add);
                      $('#produktionszeit_form').val(parseFloat(msg["produktionszeit"]));
 
+                     var disp_price_pages = "Druckkosten für " + json_seitenzahl + " Seiten";
+                     if (json_ein_zwei_seitig == 2) {
+                       disp_price_pages += " auf " + json_seitenzahl / 2 + " Blättern";
+                     }
+                     $('#price_per_page_display').html(disp_price_pages);
                      $('#price_per_page').html(p1.toFixed(2) + " &euro;");
                      if (isNaN(p2)) {
                        $('#price_add_randlos_group').hide();
@@ -524,8 +525,10 @@ function check_deckblatt_datei() {
   var answer = $('#deckblatt_datei').val() != "";
   if (answer) {
     $('#deckblatt_datei_error')[0].textContent="";
+    $('#deckblatt_datei_error').hide();
   } else {
-    $('#deckblatt_datei_error ')[0].textContent="Datei für das Deckblatt fehlt";
+    $('#deckblatt_datei_error')[0].textContent="Datei für das Deckblatt fehlt";
+    $('#deckblatt_datei_error').show();
   }
   return answer;
 };
@@ -538,8 +541,10 @@ function check_inhalt_datei() {
   var answer = $('#inhalt_datei').val() != "";
   if (answer) {
     $('#inhalt_datei_error')[0].textContent="";
+    $('#inhalt_datei_error').hide();
   } else {
     $('#inhalt_datei_error')[0].textContent="Datei für den Inhalt fehlt";
+    $('#inhalt_datei_error').show();
   }
   return answer;
 };

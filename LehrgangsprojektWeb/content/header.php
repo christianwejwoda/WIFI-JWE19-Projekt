@@ -21,26 +21,29 @@
 
     <div class="header">
       <div class="container-fluid ">
-        <div class="row bannerrow">
-          <div class="col-12 header_companyname">
-            <a href="home"><img src="img/logo.svg" alt="Logo <?php echo $companyname; ?>"></a>
-            &nbsp;
-            &nbsp;
-            <a href="home" class="header_companyname_text1">
-              <div class="header_companyname_text2">
-                <?php echo $companyname; ?>
+        <div class="row bannerrow align-items-end">
+          <div class="col-12">
+            <div class="container">
+              <div class="row">
+                <div class="col-12 header_companyname">
+                  <a href="home">
+                    <img src="img/logo.svg" alt="Logo <?php echo $companyname; ?>">
+                  </a>
+                  <a href="home" class="header_companyname_text1">
+                    <div class="header_companyname_text2">
+                      <?php echo $companyname; ?>
+                    </div>
+                  </a>
+                </div>
               </div>
-            </a>
+            </div>
           </div>
         </div>
-
-        <!-- <div class="row menurow">
-          <div class="col-12 "> -->
-            <?php
-            // Navigation an dieser Stelle einbinden
-            include "nav.php"
-            ?>
-          <!-- </div>
-        </div> -->
       </div>
+
+      <?php
+        // Navigation an dieser Stelle einbinden
+
+        include "nav.php"
+      ?>
     </div>

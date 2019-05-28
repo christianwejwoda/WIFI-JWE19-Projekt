@@ -23,6 +23,7 @@ require_once "lib/setup.php";
         ?>
       </select>
 
+      <div class="w-100"></div>
       <span class="col-12 col-lg-4"></span>
       <span class="col-12 col-lg-8 error_message" id="produkt_id_error"></span>
     </div>
@@ -41,9 +42,9 @@ require_once "lib/setup.php";
         } ?>/> beiseitig
       </label>
 
-      <span class="col-lg-4"></span>
-
-      <span class="col-12 col-lg-4 "></span>
+      <!-- <span class="col-lg-4"></span> -->
+      <div class="w-100"></div>
+      <span class="col-12 col-lg-4"></span>
       <span class="col-12 col-lg-8 error_message" id="ein_zwei_seitig_error"></span>
     </div>
 
@@ -61,8 +62,8 @@ require_once "lib/setup.php";
           echo '/> ' . $gramatur->gramm_m2 . '</label>';
         }
        ?>
-
-       <span class="col-12 col-lg-4 "></span>
+       <div class="w-100"></div>
+       <span class="col-12 col-lg-4"></span>
        <span class="col-12 col-lg-8 error_message" id="grammatur_id_error"></span>
     </div>
 
@@ -81,8 +82,9 @@ require_once "lib/setup.php";
       <label class="col-12 col-lg-4 col-form-label" for="seitenzahl" id="seitenzahl_label">Seitenanzahl (min. 10 Seiten)</label>
       <input class="form-control col-12 col-sm-5 col-lg-2 " type="number" name="seitenzahl" id="seitenzahl" min="10">
 
-      <span class="col-lg-6"></span>
+      <!-- <span class="col-lg-6"></span> -->
 
+      <div class="w-100"></div>
       <span class="col-12 col-lg-4"></span>
       <span class="col-12 col-lg-8 error_message" id="seitenzahl_error"></span>
     </div>
@@ -92,16 +94,14 @@ require_once "lib/setup.php";
       <label class="col-12 col-lg-4  col-form-label" for="einheiten">Anzahl Einheiten (Druckwerke)</label>
       <input class="form-control col-12 col-sm-5 col-lg-2" type="number" name="einheiten" id="einheiten" min="1">
 
-      <span class="col-lg-6"></span>
-
-      <span class="col-12 col-lg-4 "></span>
+      <div class="w-100"></div>
+      <span class="col-12 col-lg-4"></span>
       <span class="col-12 col-lg-8 error_message" id="einheiten_error"></span>
     </div>
 
     <!-- Zustelltyp -->
     <div class="form-group row">
       <div class="col-12 col-lg-4  col-form-label">Zustelltyp</div>
-      <!-- <div class="col-12 col-lg-8 radio_format"> -->
       <?php
       $zustelloptionen = new db_zustelloptionen();
       foreach ($zustelloptionen->get() as $zustelloption) {
@@ -112,9 +112,9 @@ require_once "lib/setup.php";
           echo"</span>";
         }
        ?>
-       <!-- </div> -->
 
-       <span class="col-12 col-lg-4 "></span>
+       <div class="w-100"></div>
+       <span class="col-12 col-lg-4"></span>
        <span class="col-12 col-lg-8 error_message" id="zustelloption_id_error"></span>
     </div>
 
@@ -131,8 +131,8 @@ require_once "lib/setup.php";
                    $date->add(new DateInterval('P6M'));
                    echo $date->format('Y-m-d');
                     ?>"  class="form-control col-12 col-sm-5 col-lg-3" id="lieferdatum", name="lieferdatum">
-      <span class="col-lg-5"></span>
 
+      <div class="w-100"></div>
       <span class="col-12 col-lg-4"></span>
       <span class="col-12 col-lg-8 error_message" id="lieferdatum_error"></span>
     </div>
@@ -147,7 +147,7 @@ require_once "lib/setup.php";
       <p id="preisanzeige_fehler"></p>
       <p class='h3'>Angebot</p>
       <div class='form-group row'>
-        <span class='col-12 col-sm-5 col-lg-4 col-form-label'>Preis pro Seite:</span>
+        <span class='col-12 col-sm-5 col-lg-4 col-form-label' id='price_per_page_display'>Preis für  Seite:</span>
         <span class='col-sm-3 col-lg-2'></span>
         <span class='col-sm-1 col-lg-1'></span>
         <span class='col-12 col-sm-3 col-lg-2 form-control text-right' id="price_per_page"></span>
@@ -196,21 +196,21 @@ require_once "lib/setup.php";
         <div class="form-group row">
           <label class="col-12 col-lg-4  col-form-label" for="nachname">Nachname:</label>
           <input class="form-control col-12 col-lg-8" type="text" name="nachname" id="nachname" />
-          <span class="col-12 col-lg-4 "></span>
+          <span class="col-12 col-lg-4"></span>
           <span class="col-12 col-lg-8 error_message" id="nachname_error"></span>
         </div>
 
         <div class="form-group row">
           <label class="col-12 col-lg-4  col-form-label" for="vorname">Vorname:</label>
           <input class="form-control col-12 col-lg-8" type="text" name="vorname" id="vorname" />
-          <span class="col-12 col-lg-4 "></span>
+          <span class="col-12 col-lg-4"></span>
           <span class="col-12 col-lg-8 error_message" id="vorname_error"></span>
         </div>
 
         <div class="form-group row">
           <label class="col-12 col-lg-4  col-form-label" for="strasse">Straße:</label>
           <input class="form-control col-12 col-lg-8" type="text" name="strasse" id="strasse" />
-          <span class="col-12 col-lg-4 "></span>
+          <span class="col-12 col-lg-4"></span>
           <span class="col-12 col-lg-8 error_message" id="strasse_error"></span>
         </div>
 
@@ -218,14 +218,14 @@ require_once "lib/setup.php";
           <label class="col-12 col-lg-4 col-form-label" for="plz">PLZ / Ort:</label>
           <input class="form-control col-2 col-lg-1" type="text" name="plz" id="plz" />
           <input class="form-control col-10 col-lg-7" type="text" name="ort" id="ort" />
-          <span class="col-12 col-lg-4 "></span>
+          <span class="col-12 col-lg-4"></span>
           <span class="col-12 col-lg-8 error_message" id="plzort_error"></span>
         </div>
 
         <div class="form-group row">
           <label class="col-12 col-lg-4  col-form-label" for="email">E-Mail:</label>
           <input class="form-control col-12 col-lg-8" type="text" name="email" id="email" />
-          <span class="col-12 col-lg-4 "></span>
+          <span class="col-12 col-lg-4"></span>
           <span class="col-12 col-lg-8 error_message" id="email_error"></span>
         </div>
 
@@ -233,7 +233,7 @@ require_once "lib/setup.php";
         <div class="form-group row" id="deckblattfarbauswahl">
           <label class="col-12 col-lg-4  col-form-label" for="farbe">Farbe:</label>
           <input class="form-control col-12 col-lg-8" type="color" name="farbe" id="farbe" />
-          <span class="col-12 col-lg-4 "></span>
+          <span class="col-12 col-lg-4"></span>
           <span class="col-12 col-lg-8 error_message" id="farbe_error"></span>
         </div>
 
@@ -241,30 +241,30 @@ require_once "lib/setup.php";
         <div class="form-group row" id="deckblatttexteingabe">
           <label class="col-12 col-lg-4  col-form-label" for="deckblatt_text">Text für Deckblatt:</label>
           <input class="form-control col-12 col-lg-8" type="textarea" name="deckblatt_text" id="deckblatt_text" />
-          <span class="col-12 col-lg-4 "></span>
+          <span class="col-12 col-lg-4"></span>
           <span class="col-12 col-lg-8 error_message" id="deckblatt_text_error"></span>
         </div>
 
         <!-- Deckblatt Upload -->
         <div class="form-group row">
           <label class="col-12 col-lg-4 col-form-label" for="deckblatt_datei">Deckblatt-Datei (PDF):</label>
-          <input class="col-12 col-lg-2 form-control-file" type="file" accept=".pdf" name="deckblatt_datei[]" id="deckblatt_datei"/>
-          <div class="progressBar col-12 col-lg-6" id="progressBar_deckblatt_datei">
+          <input class="col-12 col-lg-4 form-control-file" type="file" accept=".pdf" name="deckblatt_datei[]" id="deckblatt_datei"/>
+          <div class="progressBar col-12 col-lg-4" id="progressBar_deckblatt_datei">
             <div class="bar" id="bar_deckblatt_datei"></div>
             <div class="percent" id="percent_deckblatt_datei">0%</div>
           </div>
-          <span class="col-12 col-lg-6 error_message" id="deckblatt_datei_error"></span>
+          <span class="col-12 col-lg-4 error_message" id="deckblatt_datei_error" hidden></span>
         </div>
 
         <!-- Content Upload -->
         <div class="form-group row">
-          <label class="col-12 col-lg-4  col-form-label" for="inhalt_datei">Inhalt-Datei (PDF):</label>
-          <input class="col-12 col-lg-2 form-control-file" type="file" accept=".pdf" name="inhalt_datei[]" id="inhalt_datei"/>
-          <div class="progressBar col-12 col-lg-6" id="progressBar_inhalt_datei">
+          <label class="col-12 col-lg-4 col-form-label" for="inhalt_datei">Inhalt-Datei (PDF):</label>
+          <input class="col-12 col-lg-4 form-control-file fileinput-button" type="file" accept=".pdf" name="inhalt_datei[]" id="inhalt_datei"/>
+          <div class="progressBar col-12 col-lg-4" id="progressBar_inhalt_datei">
             <div class="bar" id="bar_inhalt_datei"></div>
             <div class="percent" id="percent_inhalt_datei">0%</div>
           </div>
-          <span class="col-12 col-lg-6 error_message" id="inhalt_datei_error"></span>
+          <span class="col-12 col-lg-4 error_message" id="inhalt_datei_error" hidden></span>
         </div>
       </div>
     </div>

@@ -14,11 +14,26 @@ session_unset();
     <meta charset="utf-8">
     <title>Rezepte-Administraton</title>
   </head> -->
-  <body>
-    <h2>Logout</h2>
-    <p>Sie wurden erfolgreich ausgeloggt.</p>
-    <p>
-      <a href="login.php">hier geht es zurück zum Login</a>
-    </p>
+  <!-- <body> -->
+  <div class="container">
+    <div class="row">
+      <h2 class="col-12">Logout</h2>
+    </div>
+    <div class="row">
+      <div class="col-12">
+        Sie wurden erfolgreich ausgeloggt.
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-12">
+        <a href="login.php">hier geht es zurück zum Login</a>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-12">
+        <a href="../home">hier geht es zur Hauptseite</a>
+      </div>
+    </div>
+  </div>
   <!-- </body>
 </html> -->

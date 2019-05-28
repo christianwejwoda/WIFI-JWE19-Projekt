@@ -143,6 +143,6 @@ if (!empty($_POST)) {
             }
            ?>
           <div>
-            <button class="btn-send" type="submit" >speichern</button>
+            <button class="btn-send btn-primary" type="submit" >speichern</button>
           </div>
         </form>
