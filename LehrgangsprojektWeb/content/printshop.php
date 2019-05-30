@@ -2,8 +2,8 @@
 require_once "lib/setup.php";
 ?>
 
-<div class="container maxWidth">
-  <form class="masterForm wrapper" id="printshop_form" action="<?php echo basename(__FILE__, '.php'); ?>" method="post">
+<div class="container paper rounded p-4 mt-4">
+  <form class="" id="printshop_form" action="printshop_saved" method="post">
     <input type="text" name="session_id" id="session_id" value="<?php echo session_id(); ?>" hidden>
 
     <!-- Produkte: zB: Budget Softcover, Standard, Premium -->
@@ -55,7 +55,7 @@ require_once "lib/setup.php";
       $gramaturen = new db_gramaturen();
       foreach ($gramaturen->get() as $gramatur) {
           echo '<label class="col-2 col-lg-1 radio_format col-form-label" for="pg' . $gramatur->id . '">';
-          echo '<input id="pg' . $gramatur->id . '" type="radio" name="grammatur_id" value="' . $gramatur->id . '" maxseiten="' . $gramatur->maxseiten . '"';
+          echo '<input id="pg' . $gramatur->id . '" type="radio" name="grammatur_id" value="' . $gramatur->id . '" data-maxseiten="' . $gramatur->maxseiten . '"';
           if (!empty($posted) && $posted["grammatur_id"] == $gramatur->id) {
             echo " selected ";
           }
@@ -70,11 +70,9 @@ require_once "lib/setup.php";
     <!-- Randloser Druck -->
     <div class="form-group row flex-lg-row flex-row-reverse">
       <label class="col-11 col-lg-4 form-check-label" for="randlos">Randloser Druck</label>
-      <!-- <div class="radio_format"> -->
         <div class="form-check">
-          <input class="form-check-input" type="checkbox" name="randlos" id="randlos" autocomplete="off">
+          <input class="form-check-input" type="checkbox" name="randlos" id="randlos">
         </div>
-      <!-- </div> -->
     </div>
 
     <!-- Seitenanzahl -->
@@ -106,8 +104,8 @@ require_once "lib/setup.php";
       $zustelloptionen = new db_zustelloptionen();
       foreach ($zustelloptionen->get() as $zustelloption) {
           echo "<span class='col-12 col-lg-2 '>";
-          echo '<label class="radio_format col-form-label" for="pg' . $zustelloption->id . '">';
-          echo '<input id="pg' . $zustelloption->id . '" type="radio" name="zustelloption_id" value="' . $zustelloption->id . '" ';
+          echo '<label class="radio_format col-form-label" for="zo' . $zustelloption->id . '">';
+          echo '<input id="zo' . $zustelloption->id . '" type="radio" name="zustelloption_id" value="' . $zustelloption->id . '" ';
           echo '/> ' . $zustelloption->titel . '</label>';
           echo"</span>";
         }
@@ -130,14 +128,14 @@ require_once "lib/setup.php";
                    $date->add(new DateInterval('P10D'));
                    $date->add(new DateInterval('P6M'));
                    echo $date->format('Y-m-d');
-                    ?>"  class="form-control col-12 col-sm-5 col-lg-3" id="lieferdatum", name="lieferdatum">
+                    ?>"  class="form-control col-12 col-sm-5 col-lg-3" id="lieferdatum" name="lieferdatum">
 
       <div class="w-100"></div>
       <span class="col-12 col-lg-4"></span>
       <span class="col-12 col-lg-8 error_message" id="lieferdatum_error"></span>
     </div>
 
-    <div class="preisanzeige" id="preisanzeige">
+    <div class="preisanzeige container paper rounded p-4 mt-4 fade show" id="preisanzeige">
       <input type="text" name="price_per_page_form" id="price_per_page_form" value="" hidden>
       <input type="text" name="price_add_randlos_add_form" id="price_add_randlos_add_form" value="" hidden>
       <input type="text" name="price_add_cover_add_form" id="price_add_cover_add_form" value="" hidden>
@@ -182,16 +180,17 @@ require_once "lib/setup.php";
       </div>
 
       <!-- alles akzeptiert -->
-      <div class='form-group row flex-lg-row flex-row-reverse'>
+      <div class='form-group row flex-lg-row flex-row-reverse alert' id='akzeptiertLabel'>
         <label class='col-11 col-lg-4 form-check-label' for='akzeptiert'>Ich akzeptiere das hier erstellte Angebot.</label>
         <div class='radio_format'>
           <div class='form-check'>
-            <input class='form-check-input' type='checkbox' name='akzeptiert' id='akzeptiert' autocomplete='off' />
+            <input class='form-check-input' type='checkbox' name='akzeptiert' id='akzeptiert'/>
           </div>
         </div>
       </div>
+      </div>
 
-      <div class='abschluss' id='abschluss'>
+      <div class='abschluss container paper rounded p-4 mt-4 fade show' id='abschluss'>
 
         <div class="form-group row">
           <label class="col-12 col-lg-4  col-form-label" for="nachname">Nachname:</label>
@@ -216,8 +215,8 @@ require_once "lib/setup.php";
 
         <div class="form-group row">
           <label class="col-12 col-lg-4 col-form-label" for="plz">PLZ / Ort:</label>
-          <input class="form-control col-2 col-lg-1" type="text" name="plz" id="plz" />
-          <input class="form-control col-10 col-lg-7" type="text" name="ort" id="ort" />
+          <input class="form-control col-3 col-lg-1" type="text" name="plz" id="plz" />
+          <input class="form-control col-9 col-lg-7" type="text" name="ort" id="ort" />
           <span class="col-12 col-lg-4"></span>
           <span class="col-12 col-lg-8 error_message" id="plzort_error"></span>
         </div>
@@ -240,7 +239,7 @@ require_once "lib/setup.php";
         <!-- Text -->
         <div class="form-group row" id="deckblatttexteingabe">
           <label class="col-12 col-lg-4  col-form-label" for="deckblatt_text">Text für Deckblatt:</label>
-          <input class="form-control col-12 col-lg-8" type="textarea" name="deckblatt_text" id="deckblatt_text" />
+          <textarea class="form-control col-12 col-lg-8" name="deckblatt_text" id="deckblatt_text"></textarea>
           <span class="col-12 col-lg-4"></span>
           <span class="col-12 col-lg-8 error_message" id="deckblatt_text_error"></span>
         </div>
@@ -266,12 +265,11 @@ require_once "lib/setup.php";
           </div>
           <span class="col-12 col-lg-4 error_message" id="inhalt_datei_error" hidden></span>
         </div>
-      </div>
-    </div>
 
-    <div>
-      <button id="btn-send" type="button">abschicken</button>
-    </div>
+        <div class="form-group row">
+          <button type="button" class="col-12 btn-primary" id="btn-send">abschicken</button>
+        </div>
+      </div>
   </form>
 </div>
 

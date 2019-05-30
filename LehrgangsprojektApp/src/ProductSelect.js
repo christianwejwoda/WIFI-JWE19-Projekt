@@ -120,7 +120,16 @@ class ProductSelect extends Component {
     this.handleChange = this.handleChange.bind(this);
   }
 
-  resetForm = () => {
+  componentDidUpdate(prevProps, prevState) {
+    // only update chart if the data has changed
+    // if (event.target.name === "akzeptiert") {
+    if (this.state.akzeptiert !== prevState.akzeptiert) {
+      window.scrollTo(0,document.body.scrollHeight);
+    }
+    // }
+  }
+
+resetForm = () => {
       this.setState(this.baseState)
     }
 
@@ -203,6 +212,9 @@ class ProductSelect extends Component {
 
     this.setState({angebotHidden: false});
     this.setState({akzeptiert: false});
+
+    window.scrollTo(0,document.body.scrollHeight);
+
   }
 
   onPricesClicked = (e) => {
@@ -300,13 +312,13 @@ class ProductSelect extends Component {
   }
 
   handleChange = event => {
-    // UploadFile
     switch (event.target.type) {
       case "checkbox":
         this.setState({[event.target.name]: event.target.checked});
         break;
 
       case "file":
+        // UploadFile
         UploadFile.upload(this.state.session_id, event.target.files[0], this.state.server);
         this.setState({[event.target.name]: event.target.value});
         break;
@@ -394,13 +406,13 @@ class ProductSelect extends Component {
       <Grid item>
         <FormLabel component="legend">Seitenzahl min {this.state.minseiten} - max {this.state.maxseiten}</FormLabel>
         <FormHelperText error hidden={ !this.state.showPagecountError }>{this.state.pagecountErrortext}</FormHelperText>
-        <Input type="number" name="pagecount" inputProps={{min: this.state.minseiten, max: this.state.maxseiten}} value={this.state.pagecount} onChange={this.handleChange} />
+        <Input type="number" name="pagecount" inputProps={{min: this.state.minseiten, max: this.state.maxseiten}} value={this.state.pagecount} onChange={this.handleChange} fullWidth/>
       </Grid>
 
       <Grid item>
         <FormLabel component="legend">Anzahl Einheiten (Druckwerke)</FormLabel>
         <FormHelperText error hidden={ !this.state.showUnitsError }>Es muss eine Anzahl Einheiten eingegeben werden.</FormHelperText>
-        <Input type="number" name="units" inputProps={{min:1}} value={this.state.units} onChange={this.handleChange}/>
+        <Input type="number" name="units" inputProps={{min:1}} value={this.state.units} onChange={this.handleChange} fullWidth/>
       </Grid>
 
       <Grid item>
@@ -412,7 +424,7 @@ class ProductSelect extends Component {
       <Grid item>
         <FormLabel component="legend">gewünschter Liefertermin</FormLabel>
         <FormHelperText filled	 error hidden={ !this.state.showDeliverydateError }>Bitte füllen Sie einen Liefertermin aus.</FormHelperText>
-        <TextField name="deliverydate" type="date" className={classes.textField} onChange={this.handleChange} InputLabelProps={{shrink: true,}}/>
+        <TextField name="deliverydate" type="date" className={classes.textField} onChange={this.handleChange} InputLabelProps={{shrink: true,}} fullWidth/>
       </Grid>
 
       <Grid item className={classes.button}>
@@ -550,6 +562,5 @@ class ProductSelect extends Component {
   );
   }
 }
-
 
 export default withStyles(styles)(ProductSelect);

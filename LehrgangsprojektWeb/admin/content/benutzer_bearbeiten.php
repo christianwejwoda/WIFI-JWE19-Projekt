@@ -54,7 +54,7 @@ if (!empty($_POST)) {
 
 }
 ?>
-        <form class="container-fluid" action="<?php echo basename(__FILE__, '.php'); ?>" method="post">
+        <form class="container paper rounded p-4" action="<?php echo basename(__FILE__, '.php'); ?>" method="post">
           <h2>Benutzer:</h2>
           <div class="form-group row d-none d-md-flex">
             <div class="col-2"></div>

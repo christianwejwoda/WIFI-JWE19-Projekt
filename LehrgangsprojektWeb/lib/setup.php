@@ -18,6 +18,7 @@ $menu_items = array(
   array ("url_part" => "printshop", "include_file" => "printshop.php", "display" => "Printshop", "pagetitle" => "Online-Printshop", "meta_discription" => "Stellen Sie ihre Wünsche zusammen und fordern Sie ein Angebot an."),
   array ("url_part" => "contact", "include_file" => "contact.php", "display" => "Kontakt", "pagetitle" => "Kontakt", "meta_discription" => "Hier können Sie uns kontaktieren."),
   array ("url_part" => "admin", "include_file" => "", "display" => "Adminbereich", "pagetitle" => "Adminbereich", "meta_discription" => "Hier können Sie als Admin diverse Konfigurationen durchführen."),
+  array ("url_part" => "printshop_saved", "include_file" => "printshop_saved.php", "display" => "", "pagetitle" => "", "meta_discription" => ""),
   );
 
 require_once "functions.php";

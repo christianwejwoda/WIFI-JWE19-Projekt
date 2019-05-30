@@ -14,7 +14,7 @@
     <link rel="stylesheet" href="css/jquery.fileupload.css">
 
     <title><?php echo htmlspecialchars($pagetitle) ?></title>
-    <meta name"description" content="<?php echo htmlspecialchars($meta_discription); ?>" />
+    <meta name="description" content="<?php echo htmlspecialchars($meta_discription); ?>" />
 
   </head>
   <body>

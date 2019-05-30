@@ -6,6 +6,10 @@
   color: black;
   text-decoration: none;
 }
+.header a:hover {
+  color: black;
+  text-decoration: none;
+}
 .bannerrow {
   background-image: url("../img/pexels-photo-191429_1.jpeg");
   background-size: cover;
@@ -70,15 +74,25 @@ h1 {
   padding-bottom: 0 !important;
   margin: 0;
 }
+.blinking {
+    animation:blinkingText 0.8s;
+     /* infinite; */
+}
+@keyframes blinkingText{
+    0%{     background-color: transparent;    }
+    /* 49%{    background-color: transparent; } */
+    50%{    background-color: #17a2b8;  }
+    /* 99%{    background-color: transparent;  } */
+    100%{   background-color: transparent;    }
+}
 /* ******* */
 /* general */
 /* ******* */
 .maxWidth {
   max-width: 1024px;
 }
-.wrapper {
-  background-color: lightgray;
-   /* var(--light); */
+.paper {
+  background-color:  rgba(0,0,0,.03);
   border-radius: 10px;
   padding: 2em;
 }
@@ -99,6 +113,18 @@ h1 {
 .bar {
   height: 18px;
   background: green;
+}
+
+.blinking_error {
+    animation:blinkingText 0.8s;
+     /* infinite; */
+}
+@keyframes blinkingText{
+    0%{     background-color: transparent;    }
+    /* 49%{    background-color: transparent; } */
+    50%{    background-color: lightcoral;  }
+    /* 99%{    background-color: transparent;  } */
+    100%{   background-color: transparent;    }
 }
 
 .error_message {
@@ -157,7 +183,7 @@ i {
 /* // Large devices (desktops, 992px and up) */
 @media (min-width: 992px) {
   .header {
-    margin-bottom: 4em;
+    /* margin-bottom: 4em; */
   }
 
   .header_companyname img {

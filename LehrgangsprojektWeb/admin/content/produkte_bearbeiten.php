@@ -43,7 +43,7 @@ if (!empty($_POST)) {
 
 }
 ?>
-        <form class="container" action="<?php echo basename(__FILE__, '.php'); ?>" method="post">
+        <form class="container paper rounded p-4 mt-4" action="<?php echo basename(__FILE__, '.php'); ?>" method="post">
           <h2>Produkte:</h2>
           <?php
             echo '<div class="form-group row d-none d-md-flex">';

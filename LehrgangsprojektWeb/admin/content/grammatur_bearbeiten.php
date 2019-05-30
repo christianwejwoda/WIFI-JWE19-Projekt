@@ -44,14 +44,7 @@ if (!empty($_POST)) {
 
 }
 ?>
-<div class="container-fluid">
-  <div class="row">
-    <div class="col-1">
-    </div>
-
-    <div class="col-11">
-      <div class="row">
-        <form class="" action="<?php echo basename(__FILE__, '.php'); ?>" method="post">
+        <form class="container paper rounded p-4 mt-4" action="<?php echo basename(__FILE__, '.php'); ?>" method="post">
           <h2>Grammaturen:</h2>
           <?php
             echo '<div class="form-group row d-none d-md-flex">';
@@ -133,7 +126,3 @@ if (!empty($_POST)) {
             <button class="btn-send btn-primary" type="submit" >abschicken</button>
           </div>
         </form>
-      </div>
-    </div>
-  </div>
-</div>

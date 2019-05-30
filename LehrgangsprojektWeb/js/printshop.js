@@ -94,8 +94,14 @@ function check_all()
 {
   $('#abschluss').hide();
   $('#akzeptiert').prop('checked',false);
+  $('#akzeptiertLabel').removeClass("blinking");
 
-  if (check_all_sub()) {
+  if (!check_all_sub())
+  {
+    $('#preisanzeige').hide();
+  }
+  else
+  {
       $('#preisanzeige_fehler').html("");
 
        var sendInfo = {
@@ -169,6 +175,9 @@ function check_all()
                      }
 
                      $('#preisanzeige').show();
+                     window.scrollTo(0,document.body.scrollHeight);
+                     $('#akzeptiertLabel').addClass("blinking");
+                     // alert-info  blinking
 
                      if (msg["deckblattfarbauswahl"] == 1) {
                        $('#deckblattfarbauswahl').show();
@@ -297,7 +306,7 @@ function check_grammatur_id() {
     if ($('[name="grammatur_id"]')[key].checked) {
       ob = $('[name="grammatur_id"]')[key];
       answer = ob.value;
-      maxseiten = parseInt(ob.attributes["maxseiten"].value);
+      maxseiten = parseInt(ob.attributes["data-maxseiten"].value);
     }
   });
 
@@ -359,21 +368,37 @@ $('#lieferdatum').change(function() {
   check_all();
 });
 function check_lieferdatum() {
+    var error_message = "";
 
     json_lieferdatum = $('#lieferdatum').val();
 
-  var answer = $('#lieferdatum').val() != "";
-  if (answer) {
-    $('#lieferdatum_error')[0].textContent="";
-  } else {
-    $('#lieferdatum_error')[0].textContent="gewünschtes Lieferdatum fehlt";
-  }
+    var answer = $('#lieferdatum').val() != "";
+    if (answer) {
+      var minDate = new Date();
+      minDate.setDate(minDate.getDate() + 10);
+
+      var maxDate = new Date();
+      maxDate.setDate(maxDate.getDate() + 10);
+      maxDate.setMonth(maxDate.getMonth() + 6);
+
+      var inputDate = new Date(json_lieferdatum);
+      if (inputDate < minDate || inputDate > maxDate) {
+        $('#lieferdatum_error')[0].textContent="Das gewünschte Lieferdatum liegt ausserhalb der erlauben Bereichs.";
+        answer = false;
+      } else {
+        $('#lieferdatum_error')[0].textContent="";
+      }
+    } else {
+      $('#lieferdatum_error')[0].textContent="gewünschtes Lieferdatum fehlt";
+    }
+
   return answer;
 };
 
 $('#akzeptiert').change(function() {
   if ($(this).prop('checked')) {
     $('#abschluss').show();
+    window.scrollTo(0,document.body.scrollHeight);
   } else {
     $('#abschluss').hide();
   }

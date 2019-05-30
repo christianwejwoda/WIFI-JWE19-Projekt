@@ -15,11 +15,15 @@ $modus = 0;
   }
 
   if (!empty($_POST)) {
+    // echo "<pre>";print_r($_POST); echo "</pre>";
     $auftraegID = (int)$_POST["id"];
     if ($auftraegID > 0) {
       $auftraeg = new db_auftrag($auftraegID);
-      $auftraeg->preis_fix = (double)$_POST["preis_fix"] ;
-      $auftraeg->geprueft = ($_POST["geprueft"] == "on" ? 1 : 0) ;
+
+      $auftraeg->preis_fix = (double)str_replace(",",".",$_POST["preis_fix"]) ;
+      if (array_key_exists("geprueft",$_POST)) {
+        $auftraeg->geprueft = ($_POST["geprueft"] == "on" ? 1 : 0) ;
+      }
       $auftraeg->save();
       if ($auftraeg->geprueft == 1) {
         $m = new lib_mailsender($auftraeg->getRow());
@@ -74,7 +78,7 @@ $modus = 0;
     </div>
   </nav>
 
-  <div class="container maxWidth">
+  <div class="container rounded mt-4">
     <div class="accordion" id="accordionExample">
       <?php
       $auftraege = new db_auftraege();
@@ -83,7 +87,7 @@ $modus = 0;
           <div class="card">
             <div class="card-header" id="heading<?php echo $auftraeg->id; ?>">
               <h5 class="mb-0">
-                <button class="btn btn-secondary " type="button" data-toggle="collapse" data-target="#collapse<?php echo $auftraeg->id; ?>" aria-expanded="true" aria-controls="collapse<?php echo $auftraeg->id; ?>">
+                <button class="btn btn-secondary" type="button" data-toggle="collapse" data-target="#collapse<?php echo $auftraeg->id; ?>" aria-expanded="true" aria-controls="collapse<?php echo $auftraeg->id; ?>">
                   <?php echo $auftraeg->nachname.' '.$auftraeg->vorname.'(' . $auftraeg->id . ')'; ?>
                 </button>
               </h5>
@@ -234,7 +238,7 @@ $modus = 0;
                   <p class='h3'>Angebot</p>
                   <p>alle Preise in €</p>
                   <div class='row'>
-                    <span class='col-12 col-sm-5 col-lg-5 border'>Druckkosten für <?php echo $auftraeg->seitenzahl; ?> Seiten<?php 
+                    <span class='col-12 col-sm-5 col-lg-5 border'>Druckkosten für <?php echo $auftraeg->seitenzahl; ?> Seiten<?php
                     if($auftraeg->ein_zwei_seitig == 2) {
                       echo " auf " . $auftraeg->seitenzahl / 2 . " Blättern";
                     }
@@ -243,33 +247,33 @@ $modus = 0;
                     <span class='col-sm-1 col-lg-1'></span>
                     <span class='col-12 col-sm-3 col-lg-2 text-right border'><?php $preisSum = $auftraeg->price_per_page; echo number_format($auftraeg->price_per_page,2,',',''); ?></span>
                   </div>
-                  <div class='row' id="price_add_randlos_group">
+                  <div class='row'>
                     <span class='col-12 col-sm-5 col-lg-5  border'>+ Aufschlag für randlosen Druck:</span>
-                    <span class='col-12 col-sm-3 col-lg-2 text-right border' id="price_add_randlos_add"><?php $preisSum += $auftraeg->price_add_randlos_add; echo number_format($auftraeg->price_add_randlos_add,2,',',''); ?></span>
+                    <span class='col-12 col-sm-3 col-lg-2 text-right border'><?php $preisSum += $auftraeg->price_add_randlos_add; echo number_format($auftraeg->price_add_randlos_add,2,',',''); ?></span>
                     <span class='col-12 col-sm-1 col-lg-1  '><i class="arrow direction"></i></span>
-                    <span class='col-12 col-sm-3 col-lg-2 text-right border' id="price_add_randlos"><?php echo number_format($preisSum,2,',',''); ?></span>
+                    <span class='col-12 col-sm-3 col-lg-2 text-right border'><?php echo number_format($preisSum,2,',',''); ?></span>
                   </div>
                   <div class='row'>
                     <span class='col-12 col-sm-5 col-lg-5  border'>+ Basispreis für Cover:</span>
-                    <span class='col-12 col-sm-3 col-lg-2 text-right border' id="price_add_cover_add"><?php $preisSum += $auftraeg->price_add_cover_add; echo number_format($auftraeg->price_add_cover_add,2,',',''); ?></span>
+                    <span class='col-12 col-sm-3 col-lg-2 text-right border'><?php $preisSum += $auftraeg->price_add_cover_add; echo number_format($auftraeg->price_add_cover_add,2,',',''); ?></span>
                     <span class='col-12 col-sm-1 col-lg-1 '><i class="arrow direction"></i></span>
-                    <span class='col-12 col-sm-3 col-lg-2 text-right border' id="price_add_cover"><?php echo number_format($preisSum,2,',',''); ?></span>
+                    <span class='col-12 col-sm-3 col-lg-2 text-right border'><?php echo number_format($preisSum,2,',',''); ?></span>
                   </div>
                   <div class='row'>
-                    <span class='col-12 col-sm-5 col-lg-5  border' id="price_result_label">Gesamtpreis für <?php echo $auftraeg->einheiten; ?> Einheiten:</span>
+                    <span class='col-12 col-sm-5 col-lg-5  border'>Gesamtpreis für <?php echo $auftraeg->einheiten; ?> Einheiten:</span>
                     <span class='col-sm-3 col-lg-2'></span>
                     <span class='col-sm-1 col-lg-1'></span>
-                    <span class='col-12 col-sm-3 col-lg-2 text-right border' id="price_result"><?php $preisSum *= $auftraeg->einheiten; echo number_format($preisSum,2,',',''); ?></span>
+                    <span class='col-12 col-sm-3 col-lg-2 text-right border'><?php $preisSum *= $auftraeg->einheiten; echo number_format($preisSum,2,',',''); ?></span>
                   </div>
-                  <div class='row' id="price_delivery_group">
-                    <span class='col-12 col-sm-5 col-lg-5  border' id="price_delivery_label">+ <?php echo $zp_titel; ?></span>
-                    <span class='col-12 col-sm-3 col-lg-2 text-right border' id="price_delivery_add"><?php $preisSum += $auftraeg->price_delivery_add; echo number_format($auftraeg->price_delivery_add,2,',',''); ?></span>
+                  <div class='row'>
+                    <span class='col-12 col-sm-5 col-lg-5  border'>+ <?php echo $zp_titel; ?></span>
+                    <span class='col-12 col-sm-3 col-lg-2 text-right border'><?php $preisSum += $auftraeg->price_delivery_add; echo number_format($auftraeg->price_delivery_add,2,',',''); ?></span>
                     <span class='col-12 col-sm-1 col-lg-1 '><i class="arrow direction"></i></span>
-                    <span class='col-12 col-sm-3 col-lg-2 text-right border' id="price_delivery"><?php echo number_format($preisSum,2,',',''); ?></span>
+                    <span class='col-12 col-sm-3 col-lg-2 text-right border'><?php echo number_format($preisSum,2,',',''); ?></span>
                   </div>
                   <div class='row'>
                     <span class='col-12 col-sm-5 col-lg-5  border'>voraussichtliche Produktionszeit</span>
-                    <span class='col-12 col-sm-7 col-lg-5 text-left border' id="produktionszeit"><?php echo $auftraeg->produktionszeit; ?> Stunden</span>
+                    <span class='col-12 col-sm-7 col-lg-5 text-left border'><?php echo $auftraeg->produktionszeit; ?> Stunden</span>
                   </div>
 
                   <br />
@@ -278,13 +282,14 @@ $modus = 0;
 
                     <!-- preis_fix -->
                     <div class="form-group row">
-                      <label class="col-12 col-lg-4 col-form-label" for="preis_fix" id="seitenzahl_label">endgültiger Preis</label>
-                      <input class="form-control col-12 col-sm-5 col-lg-2 text-right" type="number" name="preis_fix" id="preis_fix" value="<?php
+                      <label class="col-12 col-lg-4 col-form-label" for="preis_fix">endgültiger Preis</label>
+                      <input class="form-control col-12 col-sm-5 col-lg-2 text-right" type="text" name="preis_fix" id="preis_fix<?php echo $auftraeg->id; ?>" value="<?php
                         if (!is_numeric($auftraeg->preis_fix)) {
-                          echo number_format($preisSum,2,'.','');
+                          echo number_format($preisSum,2,',','');
                         } else {
-                          echo number_format($auftraeg->preis_fix,2,'.','');
+                          echo number_format($auftraeg->preis_fix,2,',','');
                         }
+                        // str_replace($_POST["preis_fix"],",",".")
                        ?>">
                     </div>
 
@@ -294,7 +299,7 @@ $modus = 0;
                       <div class="radio_format">
                         <div class="form-check">
                           <!-- col-lg-1 col-sm-1  -->
-                          <input class="form-check-input" type="checkbox" name="geprueft" id="geprueft" autocomplete="off" <?php
+                          <input class="form-check-input" type="checkbox" name="geprueft" <?php
                             if ($auftraeg->geprueft == 1) {
                               echo " checked ";
                             }
@@ -302,7 +307,7 @@ $modus = 0;
                         </div>
                       </div>
                     </div>
-                    <input type="text" name="id" id="id" value="<?php echo $auftraegID ?>" hidden>
+                    <input type="text" name="id" value="<?php echo $auftraeg->id ?>" hidden>
 
                     <?php
                     if ($auftraeg->geprueft == 0) {

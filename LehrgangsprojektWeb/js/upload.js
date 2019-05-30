@@ -59,5 +59,7 @@ $(document).on('change', '#inhalt_datei, #deckblatt_datei', function () {
       })
     }
 
+  } else {
+    $(this).val('');
   }
 });

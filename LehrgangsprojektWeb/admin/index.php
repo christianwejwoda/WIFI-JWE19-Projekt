@@ -40,6 +40,6 @@
 
  require "header.php";
  require "content/". $include_file;
- require "footer.php";
+ require "../content/footer.php";
 
   ?>
