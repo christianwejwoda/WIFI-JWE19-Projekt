@@ -17,7 +17,7 @@
 
     <!-- das unten verwendete Script ist von https://cookieinfoscript.com/ -->
     <script type="text/javascript" id="cookieinfo"
-    	src="js/cookieinfo.min.js">
+    	src="/js/cookieinfo.min.js">
     </script>
   </body>
 </html>
