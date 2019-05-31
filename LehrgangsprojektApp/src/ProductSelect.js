@@ -330,13 +330,13 @@ resetForm = () => {
             break;
 
           case "pagecount":
-            this.setState({[event.target.name]: event.target.value});
-            if (event.target.value > parseInt(this.state.maxseiten)) {
-              this.setState({[event.target.name]: this.state.maxseiten});
-            }
-            if (event.target.value < parseInt(this.state.minseiten)) {
-              this.setState({[event.target.name]: this.state.minseiten});
-            }
+            this.setState({[event.target.name]: parseInt(event.target.value)});
+            // if (event.target.value > parseInt(this.state.maxseiten)) {
+            //   this.setState({[event.target.name]: this.state.maxseiten});
+            // }
+            // if (event.target.value < parseInt(this.state.minseiten)) {
+            //   this.setState({[event.target.name]: this.state.minseiten});
+            // }
             break;
 
           default:
