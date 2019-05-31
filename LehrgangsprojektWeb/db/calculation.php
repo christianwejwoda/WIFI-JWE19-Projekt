@@ -53,7 +53,13 @@ class db_calculation
 
     // randlos ==> druckpreis + 5%
     if ($this->_values["randlos"] === "true") {
-      $preis = $preis * 1.05;
+      $param = new db_parameter("typ = ?,randlosaufschlag");
+      // print_r($param);
+      $aufschlag = 1; // Prozent
+      if ($param) {
+        $aufschlag = (float)$param->wert;
+      }
+      $preis += $preis / 100 * $aufschlag;
       $this->_answers["preis2add"] = $preis - $this->_answers["preis1"];
       $this->_answers["preis2"] = $preis;
     }

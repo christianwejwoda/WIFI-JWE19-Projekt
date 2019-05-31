@@ -1,6 +1,7 @@
 <?php
 
 $validieren = new db_validieren();
+$neu_ok = false;
 
 if (!empty($_POST)) {
 
@@ -37,6 +38,9 @@ if (!empty($_POST)) {
       if (!array_key_exists("id", $value) && $grammatur->check_double_entry($value["gramm_m2"])) {
         $validieren->fehler_eintragen("Grammatur {$value["gramm_m2"]} darf nicht doppelt sein!");
       } else {
+        if (empty($value["id"])) {
+          $neu_ok = true;
+        }
         $grammatur->save();
       }
     }
@@ -83,35 +87,35 @@ if (!empty($_POST)) {
 
             echo '<label class="form-label col-6 d-block d-md-none">g/m²</label>';
             echo '<input class="form-control col-5 col-md-1 text-right" type="text" name="grammatur-neu-gramm_m2" id="grammatur-neu-gramm_m2" value="';
-            if (array_key_exists("grammatur-neu-gramm_m2",$_POST)) {
+            if (!$neu_ok && array_key_exists("grammatur-neu-gramm_m2",$_POST)) {
               echo htmlspecialchars($_POST["grammatur-neu-gramm_m2"]);
             }
             echo '"/>';
 
             echo '<label class="form-label col-6 d-block d-md-none">Preis pro Blatt &euro;</label>';
             echo '<input class="form-control col-5 col-md-1 text-right" type="text" name="grammatur-neu-preis_blatt" id="grammatur-neu-preis_blatt" value="';
-            if (array_key_exists("grammatur-neu-preis_blatt",$_POST)) {
+            if (!$neu_ok && array_key_exists("grammatur-neu-preis_blatt",$_POST)) {
               echo htmlspecialchars($_POST["grammatur-neu-preis_blatt"]);
             }
             echo '"/>';
 
             echo '<label class="form-label col-6 d-block d-md-none">Preis pro Druckseite &euro;</label>';
             echo '<input class="form-control col-5 col-md-1 text-right" type="text" name="grammatur-neu-preis_druckseite" id="grammatur-neu-preis_druckseite" value="';
-            if (array_key_exists("grammatur-neu-preis_druckseite",$_POST)) {
+            if (!$neu_ok && array_key_exists("grammatur-neu-preis_druckseite",$_POST)) {
               echo htmlspecialchars($_POST["grammatur-neu-preis_druckseite"]);
             }
             echo '"/>';
 
             echo '<label class="form-label col-6 d-block d-md-none">max. Seiten</label>';
             echo '<input class="form-control col-5 col-md-1 text-right" type="text" name="grammatur-neu-maxseiten" id="grammatur-neu-maxseiten" value="';
-            if (array_key_exists("grammatur-neu-maxseiten",$_POST)) {
+            if (!$neu_ok && array_key_exists("grammatur-neu-maxseiten",$_POST)) {
               echo htmlspecialchars($_POST["grammatur-neu-maxseiten"]);
             }
             echo '"/>';
 
             echo '<label class="form-label col-6 d-block d-md-none">Produktionszeit (Sekunden)</label>';
             echo '<input class="form-control col-5 col-md-1 text-right" type="text" name="grammatur-neu-zeitproduktion" id="grammatur-neu-zeitproduktion" value="';
-            if (array_key_exists("grammatur-neu-zeitproduktion",$_POST)) {
+            if (!$neu_ok && array_key_exists("grammatur-neu-zeitproduktion",$_POST)) {
               echo htmlspecialchars($_POST["grammatur-neu-zeitproduktion"]);
             }
             echo '"/>';

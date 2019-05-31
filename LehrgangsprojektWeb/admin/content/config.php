@@ -7,6 +7,7 @@ $menu_items = array(
   array ("url_part" => "produkte_bearbeiten", "include_file" => "produkte_bearbeiten.php", "display" => "Produkte", "pagetitle" => "Produkte", "meta_discription" => "Produkte verwalten", "redirect" => false),
   array ("url_part" => "grammatur_bearbeiten", "include_file" => "grammatur_bearbeiten.php", "display" => "Grammaturen", "pagetitle" => "Grammaturen", "meta_discription" => "Grammaturen verwalten", "redirect" => false),
   array ("url_part" => "zustelloptionen_bearbeiten", "include_file" => "zustelloptionen_bearbeiten.php", "display" => "Zustelloptionen", "pagetitle" => "Zustelloptionen", "meta_discription" => "Zustelloptionen verwalten", "redirect" => false),
+  array ("url_part" => "parameter_bearbeiten", "include_file" => "parameter_bearbeiten.php", "display" => "Parameter", "pagetitle" => "Parameter", "meta_discription" => "Parameter verwalten", "redirect" => false),
   array ("url_part" => "benutzer_bearbeiten", "include_file" => "benutzer_bearbeiten.php", "display" => "Benutzer", "pagetitle" => "Benutzer", "meta_discription" => "Benutzer verwalten", "redirect" => false),
   array ("url_part" => "logout", "include_file" => "../logout.php", "display" => "Logout", "pagetitle" => "Logout", "meta_discription" => "Logout", "redirect" => false),
   );

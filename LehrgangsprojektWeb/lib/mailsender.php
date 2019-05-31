@@ -16,7 +16,7 @@ class lib_mailsender {
     if ($auch_an_kunde_senden == 1) {
       $empfaenger  = $this->_daten["vorname"] . " " . $this->_daten["nachname"] . " <" . $this->_daten["email"] . ">"; // beachte das Komma zum trennen von Empfängern
     } else {
-      $empfaenger  = 'Christian Wejwoda <christian@wejwoda.at>'; // beachte das Komma zum trennen von Empfängern
+      $empfaenger  = (new db_admins())->get();// 'Christian Wejwoda <christian@wejwoda.at>'; // beachte das Komma zum trennen von Empfängern
     }
 
     // Betreff
@@ -93,9 +93,9 @@ class lib_mailsender {
 
     // zusätzliche Header
     if ($auch_an_kunde_senden == 1) {
-      $header[] = 'Cc: Christian Wejwoda <christian@wejwoda.at>';
+      $header[] = 'Cc: ' . (new db_admins())->get();//Christian Wejwoda <christian@wejwoda.at>';
     }
-    $header[] = 'From: Christian Wejwoda <christian@wejwoda.at>';
+    $header[] = 'From: ' . (new db_admins())->get();//Christian Wejwoda <christian@wejwoda.at>';
     // $header[] = 'Cc: geburtstagsarchiv@example.com';
     // $header[] = 'Bcc: geburtstagscheck@example.com';
 

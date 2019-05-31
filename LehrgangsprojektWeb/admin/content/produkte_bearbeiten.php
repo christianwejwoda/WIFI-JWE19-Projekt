@@ -1,6 +1,7 @@
 <?php
 
 $validieren = new db_validieren();
+$neu_ok = false;
 
 if (!empty($_POST)) {
   // echo "<pre>";print_r($_POST);echo "</pre>";echo "<br>";die();
@@ -36,6 +37,9 @@ if (!empty($_POST)) {
       if (!array_key_exists("id", $value) && $produkt->check_double_entry($value["titel"])) {
         $validieren->fehler_eintragen("Produkt-Titel {$value["titel"]} darf nicht doppelt sein!");
       } else {
+        if (empty($value["id"])) {
+          $neu_ok = true;
+        }
         $produkt->save();
       }
     }
@@ -96,42 +100,42 @@ if (!empty($_POST)) {
             echo '<label class="form-label col-12 col-md-2 h5" for="produkt_neu_titel">Produkt NEU: </label>';
             echo '<label class="form-label col-6 d-block d-md-none">Titel</label>';
             echo '<input class="form-control col-6 col-md-3" type="text" name="produkt_neu_titel" id="produkt_neu_titel" value="';
-            if (array_key_exists("produkt_neu_titel",$_POST)) {
+            if (!$neu_ok && array_key_exists("produkt_neu_titel",$_POST)) {
               echo htmlspecialchars($_POST["produkt_neu_titel"]);
             }
             echo '"/>';
 
             echo '<label class="form-label col-6 d-block d-md-none">Preis</label>';
             echo '<input class="form-control col-6 col-md-1" type="text" name="produkt_neu_preis" id="produkt_neu_preis" value="';
-            if (array_key_exists("produkt_neu_preis",$_POST)) {
+            if (!$neu_ok && array_key_exists("produkt_neu_preis",$_POST)) {
               echo htmlspecialchars($_POST["produkt_neu_preis"]);
             }
             echo '"/>';
 
             echo '<label class="form-label col-6 d-block d-md-none">Zeit für Setup (Stunden)</label>';
             echo '<input class="form-control col-6 col-md-1" type="text" name="produkt_neu_zeitsetup" id="produkt_neu_zeitsetup" value="';
-            if (array_key_exists("produkt_neu_zeitsetup",$_POST)) {
+            if (!$neu_ok && array_key_exists("produkt_neu_zeitsetup",$_POST)) {
               echo htmlspecialchars($_POST["produkt_neu_zeitsetup"]);
             }
             echo '"/>';
 
             echo '<label class="form-label col-6 d-block d-md-none">Zeit für Verpackung (Stunden)</label>';
             echo '<input class="form-control col-6 col-md-1" type="text" name="produkt_neu_zeitverpackung" id="produkt_neu_zeitverpackung" value="';
-            if (array_key_exists("produkt_neu_zeitverpackung",$_POST)) {
+            if (!$neu_ok && array_key_exists("produkt_neu_zeitverpackung",$_POST)) {
               echo htmlspecialchars($_POST["produkt_neu_zeitverpackung"]);
             }
             echo '"/>';
 
             echo '<label class="form-label col-6 d-block d-md-none">Deckblatt Farbauswahl möglich</label>';
             echo '<input class="form-control col-1" type="checkbox" name="produkt_neu_deckblattfarbauswahl" id="produkt_neu_deckblattfarbauswahl" value="1" ';
-            if (array_key_exists("produkt_neu_deckblattfarbauswahl",$_POST)) {
+            if (!$neu_ok && array_key_exists("produkt_neu_deckblattfarbauswahl",$_POST)) {
               echo " checked ";
             }
             echo '"/>';
 
             echo '<label class="form-label col-6 d-block d-md-none">Deckblatt Texteingabe möglich</label>';
             echo '<input class="form-control col-1" type="checkbox" name="produkt_neu_deckblatttexteingabe" id="produkt_neu_deckblatttexteingabe" value="1" ';
-            if (array_key_exists("produkt_neu_deckblatttexteingabe",$_POST)) {
+            if (!$neu_ok && array_key_exists("produkt_neu_deckblatttexteingabe",$_POST)) {
               echo " checked ";
             }
             echo '"/>';

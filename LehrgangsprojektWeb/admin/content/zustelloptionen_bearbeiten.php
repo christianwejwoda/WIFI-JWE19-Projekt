@@ -1,6 +1,7 @@
 <?php
 
 $validieren = new db_validieren();
+$neu_ok = false;
 
 if (!empty($_POST)) {
   // echo "<pre>";print_r($_POST);echo "</pre>";echo "<br>";die();
@@ -39,6 +40,9 @@ if (!empty($_POST)) {
       if (!array_key_exists("id", $preis) && $zustelloption->check_double_entry($preis["titel"])) {
         $validieren->fehler_eintragen("titel {$preis["titel"]} darf nicht doppelt sein!");
       } else {
+        if (empty($value["id"])) {
+          $neu_ok = true;
+        }
         $zustelloption->save();
       }
     }
@@ -73,14 +77,14 @@ if (!empty($_POST)) {
 
             echo '<label class="form-label col-6 d-block d-md-none">Titel</label>';
             echo '<input class="form-control col-5 col-md-3" type="text" name="zustelloption_neu_titel" id="zustelloption_neu_titel" value="';
-            if (array_key_exists("zustelloption_neu_titel",$_POST)) {
+            if (!$neu_ok && array_key_exists("zustelloption_neu_titel",$_POST)) {
               echo htmlspecialchars($_POST["zustelloption_neu_titel"]);
             }
             echo '"/>';
 
             echo '<label class="form-label col-6 d-block d-md-none">Preis</label>';
             echo '<input class="form-control col-5 col-md-1" type="text" name="zustelloption_neu_preis" id="zustelloption_neu_preis" value="';
-            if (array_key_exists("zustelloption_neu_preis",$_POST)) {
+            if (!$neu_ok && array_key_exists("zustelloption_neu_preis",$_POST)) {
               echo htmlspecialchars($_POST["zustelloption_neu_preis"]);
             }
             echo '"/>';

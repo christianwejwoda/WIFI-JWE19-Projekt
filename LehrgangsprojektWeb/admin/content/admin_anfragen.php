@@ -222,7 +222,7 @@ $modus = 0;
                     <div class="col-12 col-lg-3 border">Deckblatt-Datei:</div>
                     <div class="col-12 col-lg-9 border"><?php
                       $cP = new db_uploaddatei($auftraeg->deckblatt_datei);
-                      echo "<a href='../upload/" . $cP->upload_dateiname . "' download='" . $cP->org_dateiname . "'>" . $cP->org_dateiname . "</a>";
+                      echo "<a href='../uploads/" . $cP->upload_dateiname . "' download='" . $cP->org_dateiname . "'>" . $cP->org_dateiname . "</a>";
                      ?></div>
                   </div>
 
@@ -230,7 +230,7 @@ $modus = 0;
                     <div class="col-12 col-lg-3 border">Inhalt-Datei:</div>
                     <div class="col-12 col-lg-9 border"><?php
                       $cP = new db_uploaddatei($auftraeg->inhalt_datei);
-                      echo "<a href='../upload/" . $cP->upload_dateiname . "' download='" . $cP->org_dateiname . "'>" . $cP->org_dateiname . "</a>";
+                      echo "<a href='../uploads/" . $cP->upload_dateiname . "' download='" . $cP->org_dateiname . "'>" . $cP->org_dateiname . "</a>";
                      ?></div>
                   </div>
 
