@@ -22,9 +22,10 @@ if (!empty($_POST)) {
         case 'passwort':
           if (!empty($value)) {
             $input_data[$id][$fieldname] = password_hash($value, PASSWORD_DEFAULT);
-          } else {
-            $input_data[$id][$fieldname] = "";
           }
+          // else {
+          //   $input_data[$id][$fieldname] = "";
+          // }
           break;
 
         case 'istadmin':
